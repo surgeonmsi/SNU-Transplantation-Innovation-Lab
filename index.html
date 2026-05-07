@@ -1,601 +1,1542 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
   <title>SNU Transplantation Innovation Lab</title>
-  <meta name="description" content="SNU Transplantation Innovation Lab - Advancing transplantation through surgical innovation, artificial intelligence, and translational science." />
+  <meta name="description" content="SNU Transplantation Innovation Lab — Advancing transplantation through surgical innovation, AI, and translational science."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
   <style>
-    :root {
-      --blue:#0b4aa2;
-      --blue-dark:#082b64;
-      --blue-light:#eaf3ff;
-      --slate:#0f172a;
+    :root{
+      --navy:#04173a;
+      --navy2:#071f4f;
+      --blue:#1252c8;
+      --blue-mid:#2563eb;
+      --blue-lt:#dbeafe;
+      --teal:#0d9488;
+      --violet:#7c3aed;
+      --slate:#1e293b;
       --muted:#64748b;
       --line:#e2e8f0;
       --bg:#ffffff;
       --soft:#f8fafc;
-      --card:#ffffff;
-      --shadow: 0 18px 45px rgba(15,23,42,.08);
-      --radius: 28px;
+      --r24:24px;
+      --r32:32px;
+      --shadow-sm:0 2px 8px rgba(15,23,42,.06);
+      --shadow-md:0 8px 32px rgba(15,23,42,.10);
+      --shadow-lg:0 24px 60px rgba(15,23,42,.13);
     }
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body {
-      margin:0;
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
-      color:var(--slate);
-      background:var(--bg);
-      line-height:1.6;
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth;font-size:16px}
+    body{font-family:'DM Sans',system-ui,sans-serif;color:var(--slate);background:var(--bg);line-height:1.6;-webkit-font-smoothing:antialiased}
+    h1,h2,h3,h4{font-family:'Libre Baskerville',Georgia,serif;line-height:1.15;letter-spacing:-.02em}
+    a{color:inherit;text-decoration:none}
+    img{display:block;max-width:100%}
+
+    /* ── NAV ── */
+    .nav{
+      position:sticky;top:0;z-index:50;
+      background:rgba(255,255,255,.94);
+      backdrop-filter:blur(20px);
+      border-bottom:1px solid rgba(226,232,240,.7);
     }
-    a { color: inherit; text-decoration: none; }
-    .container { max-width: 1180px; margin: 0 auto; padding: 0 24px; }
-    .nav {
-      position: sticky; top:0; z-index: 40;
-      background: rgba(255,255,255,.88);
-      backdrop-filter: blur(16px);
-      border-bottom:1px solid rgba(226,232,240,.8);
+    .nav-inner{
+      max-width:1200px;margin:0 auto;padding:0 28px;
+      height:68px;display:flex;align-items:center;justify-content:space-between;gap:24px;
     }
-    .nav-inner { height:76px; display:flex; align-items:center; justify-content:space-between; gap:24px; }
-    .brand { display:flex; align-items:center; gap:12px; }
-    .brand-mark {
-      width:42px; height:42px; border-radius:18px; background:var(--blue);
-      color:#fff; display:grid; place-items:center; font-weight:800; letter-spacing:.02em;
-      box-shadow: 0 10px 22px rgba(11,74,162,.2);
+    .brand{display:flex;align-items:center;gap:14px}
+    .brand-mark{
+      width:40px;height:40px;border-radius:12px;
+      background:linear-gradient(135deg,var(--blue),var(--navy));
+      color:#fff;display:grid;place-items:center;
+      font-family:'DM Sans',sans-serif;font-weight:700;font-size:13px;letter-spacing:.04em;
+      box-shadow:0 6px 16px rgba(18,82,200,.28);
     }
-    .brand-title { font-weight:800; line-height:1.1; }
-    .brand-sub { color:var(--muted); font-size:12px; margin-top:2px; }
-    .menu { display:flex; gap:24px; align-items:center; color:#475569; font-weight:650; font-size:14px; }
-    .menu a:hover { color: var(--blue); }
-    .button {
-      display:inline-flex; align-items:center; gap:9px;
-      background:var(--blue); color:white; padding:13px 20px; border-radius:999px;
-      font-weight:750; border:0; box-shadow: 0 12px 26px rgba(11,74,162,.18);
+    .brand-text{line-height:1.25}
+    .brand-name{font-weight:700;font-size:13.5px;color:var(--navy);letter-spacing:-.01em}
+    .brand-sub{font-size:11px;color:var(--muted);font-weight:400;letter-spacing:.03em}
+    .nav-links{display:flex;gap:28px;font-size:14px;font-weight:500;color:#475569}
+    .nav-links a:hover{color:var(--blue)}
+    .nav-cta{
+      background:var(--blue);color:#fff;
+      padding:9px 20px;border-radius:999px;
+      font-size:14px;font-weight:600;
+      box-shadow:0 4px 14px rgba(18,82,200,.25);
+      transition:background .2s,box-shadow .2s;
     }
-    .button.secondary { background:white; color:var(--slate); border:1px solid var(--line); box-shadow:none; }
-    .hero {
-      position:relative; overflow:hidden;
-      background: radial-gradient(circle at 45% 10%, rgba(59,130,246,.18), transparent 28%),
-                  linear-gradient(180deg, #eff6ff 0%, #fff 75%);
-      padding: 88px 0 88px;
+    .nav-cta:hover{background:var(--navy2);box-shadow:0 6px 20px rgba(18,82,200,.35)}
+
+    /* ── HERO ── */
+    .hero{
+      position:relative;overflow:hidden;
+      background:linear-gradient(160deg,#f0f5ff 0%,#e8f0fe 40%,#fff 80%);
+      padding:100px 0 90px;
     }
-    .hero-grid { display:grid; grid-template-columns: 1.1fr .9fr; gap:56px; align-items:center; }
-    .eyebrow {
-      display:inline-flex; padding:9px 14px; border:1px solid #bfdbfe; background:#fff; color:var(--blue);
-      border-radius:999px; font-size:13px; font-weight:800; margin-bottom:22px;
+    .hero::before{
+      content:'';position:absolute;inset:0;
+      background:radial-gradient(ellipse 70% 55% at 60% -10%,rgba(18,82,200,.12),transparent);
+      pointer-events:none;
     }
-    h1 {
-      margin:0; font-size: clamp(44px, 6vw, 78px); line-height: .98; letter-spacing:-.05em;
-      color:#071736;
+    .container{max-width:1200px;margin:0 auto;padding:0 28px}
+    .hero-inner{display:grid;grid-template-columns:1.15fr .85fr;gap:64px;align-items:center}
+    .eyebrow{
+      display:inline-flex;align-items:center;gap:8px;
+      background:#fff;border:1px solid var(--blue-lt);
+      color:var(--blue);padding:7px 16px;border-radius:999px;
+      font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+      margin-bottom:28px;box-shadow:var(--shadow-sm);
     }
-    .hero p.lead { font-size:21px; color:#475569; max-width:720px; margin:26px 0 0; line-height:1.55; }
-    .hero-actions { display:flex; flex-wrap:wrap; gap:14px; margin-top:34px; }
-    .hero-card {
-      background:rgba(255,255,255,.82); border:1px solid #dbeafe; border-radius:36px;
-      padding:30px; box-shadow: 0 30px 80px rgba(37,99,235,.12);
+    .hero h1{
+      font-size:clamp(42px,5.5vw,72px);
+      line-height:.97;letter-spacing:-.04em;
+      color:var(--navy);margin-bottom:28px;
     }
-    .mini-card { background:#f8fafc; border:1px solid var(--line); padding:20px; border-radius:24px; margin-bottom:14px; }
-    .mini-card strong { display:block; font-size:16px; margin-bottom:4px; }
-    .mini-card span { color:#64748b; font-size:14px; }
-    section { padding: 86px 0; }
-    .section-title { max-width: 760px; margin: 0 auto 42px; text-align:center; }
-    .section-title .label { color:var(--blue); font-size:13px; font-weight:900; text-transform:uppercase; letter-spacing:.22em; margin-bottom:10px; }
-    h2 { margin:0; font-size: clamp(30px, 4vw, 46px); line-height:1.1; letter-spacing:-.035em; }
-    .section-title p { color:#64748b; margin:16px auto 0; max-width:690px; }
-    .about-grid { display:grid; grid-template-columns:.9fr 1.1fr; gap:52px; align-items:start; }
-    .about-grid h2 { text-align:left; }
-    .about-text { color:#475569; font-size:18px; }
-    .soft { background:var(--soft); }
-    .featured { display:grid; grid-template-columns:.92fr 1.08fr; gap:26px; margin-bottom:34px; align-items:stretch; }
-    .featured.reverse { grid-template-columns:1.08fr .92fr; }
-    .image-card { overflow:hidden; border-radius:36px; background:#e2e8f0; border:1px solid var(--line); box-shadow: var(--shadow); min-height:330px; }
-    .image-card img { width:100%; height:100%; min-height:330px; object-fit:cover; display:block; }
-    .text-card {
-      background:#fff; border:1px solid var(--line); border-radius:36px; padding:34px; box-shadow: var(--shadow);
-      display:flex; flex-direction:column; justify-content:center;
+    .hero h1 em{font-style:italic;color:var(--blue)}
+    .hero-lead{font-size:18px;color:#475569;max-width:540px;line-height:1.65;margin-bottom:40px}
+    .hero-actions{display:flex;gap:14px;flex-wrap:wrap}
+    .btn{
+      display:inline-flex;align-items:center;gap:8px;
+      padding:13px 26px;border-radius:999px;
+      font-size:15px;font-weight:600;transition:.2s;
     }
-    .text-card .small { color:var(--blue); text-transform:uppercase; letter-spacing:.18em; font-size:12px; font-weight:900; }
-    .text-card h3 { font-size:28px; line-height:1.15; margin:14px 0 0; letter-spacing:-.02em; }
-    .text-card p { color:#64748b; margin:16px 0 0; }
-    .grid { display:grid; gap:18px; }
-    .grid.research { grid-template-columns: repeat(3, 1fr); }
-    .grid.projects { grid-template-columns: repeat(3, 1fr); }
-    .card {
-      background:#fff; border:1px solid var(--line); border-radius:28px; padding:24px; box-shadow:0 8px 24px rgba(15,23,42,.04);
+    .btn-primary{
+      background:var(--blue);color:#fff;
+      box-shadow:0 8px 24px rgba(18,82,200,.28);
     }
-    .card:hover { transform: translateY(-2px); transition:.22s ease; box-shadow: var(--shadow); }
-    .icon {
-      width:48px; height:48px; border-radius:18px; background:var(--blue-light); color:var(--blue);
-      display:grid; place-items:center; font-weight:900; margin-bottom:18px;
+    .btn-primary:hover{background:var(--navy2);box-shadow:0 10px 28px rgba(18,82,200,.38)}
+    .btn-outline{
+      border:1.5px solid var(--line);color:var(--slate);background:#fff;
     }
-    .card h3 { margin:0; font-size:18px; line-height:1.25; }
-    .card p { color:#64748b; margin:12px 0 0; font-size:14px; }
-    .pubs { background:#071226; color:white; }
-    .pubs .section-title p { color:#cbd5e1; }
-    .pub-toolbar { display:flex; justify-content:space-between; align-items:end; gap:24px; margin-bottom:28px; }
-    .pub-heading .label { color:#93c5fd; font-size:13px; font-weight:900; text-transform:uppercase; letter-spacing:.22em; margin-bottom:10px; }
-    .pub-heading h2 { color:#fff; }
-    .pub-heading p { color:#cbd5e1; max-width:650px; }
-    .search {
-      width:320px; max-width:100%; border:1px solid rgba(255,255,255,.14); background:rgba(255,255,255,.08);
-      border-radius:999px; padding:13px 18px; color:white; outline:none;
+    .btn-outline:hover{border-color:var(--blue);color:var(--blue)}
+    .hero-illustration{
+      display:flex;align-items:center;justify-content:center;
+      padding:8px;
     }
 
-    .pub-group-title { margin:32px 0 14px; display:flex; align-items:center; gap:12px; color:#bfdbfe; font-size:15px; font-weight:900; letter-spacing:.08em; text-transform:uppercase; }
-    .pub-group-title:after { content:""; flex:1; height:1px; background:rgba(255,255,255,.14); }
-    .publication {
-      border:1px solid rgba(255,255,255,.12); background:rgba(255,255,255,.06); border-radius:26px; padding:22px; margin-bottom:12px;
+    /* ── SECTIONS ── */
+    section{padding:96px 0}
+    .section-label{
+      display:inline-block;
+      color:var(--blue);font-size:12px;font-weight:700;
+      text-transform:uppercase;letter-spacing:.18em;
+      margin-bottom:14px;
     }
-    .publication:hover { background:rgba(255,255,255,.09); }
-    .badges { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:10px; }
-    .badge { font-size:12px; font-weight:800; color:#dbeafe; padding:5px 10px; border-radius:999px; background:rgba(59,130,246,.18); }
-    .badge.journal { color:#e2e8f0; background:rgba(255,255,255,.1); }
-    .publication h3 { margin:0; line-height:1.35; font-size:17px; }
-    .publication p { color:#cbd5e1; font-size:14px; margin:9px 0 0; }
-    .publication-row { display:flex; justify-content:space-between; gap:18px; align-items:start; }
-    .doi { flex:none; border:1px solid rgba(255,255,255,.16); padding:8px 12px; border-radius:999px; color:#e0f2fe; font-weight:800; font-size:13px; }
-    .people-photo { overflow:hidden; border:1px solid var(--line); border-radius:36px; box-shadow: var(--shadow); margin-bottom:30px; background:#f1f5f9; }
-    .people-photo img { display:block; width:100%; height:auto; }
-    .pi-card { display:grid; grid-template-columns:.35fr .65fr; gap:30px; max-width:840px; margin:0 auto 28px; padding:30px; border:1px solid var(--line); border-radius:36px; background:white; box-shadow: var(--shadow); }
-    .pi-photo { height:235px; border-radius:28px; overflow:hidden; background:#f1f5f9; }
-    .pi-photo img { width:100%; height:100%; object-fit:cover; object-position:center; }
-    .tags { display:flex; flex-wrap:wrap; gap:8px; margin-top:20px; }
-    .tag { background:#eff6ff; color:var(--blue); font-weight:800; font-size:13px; border-radius:999px; padding:6px 10px; }
-    .people-grid { display:grid; grid-template-columns:repeat(4, 1fr); gap:16px; }
-    .people-grid ul { list-style:none; padding:0; margin:14px 0 0; }
-    .people-grid li { font-weight:750; margin:10px 0; }
-    .news-grid { grid-template-columns: repeat(3, 1fr); }
-    .contact-box { background:#071226; color:white; border-radius:36px; padding:42px; max-width:850px; margin:0 auto; }
-    .contact-box p { color:#cbd5e1; }
-    .contact-grid { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:26px; }
-    .contact-item { background:rgba(255,255,255,.09); border-radius:18px; padding:16px; color:#e2e8f0; }
-    footer { border-top:1px solid var(--line); padding:28px 0; color:#64748b; text-align:center; font-size:14px; }
-    @media (max-width: 900px) {
-      .menu { display:none; }
-      .hero-grid, .about-grid, .featured, .featured.reverse, .pi-card { grid-template-columns:1fr; }
-      .grid.research, .grid.projects, .people-grid, .news-grid, .contact-grid { grid-template-columns:1fr; }
-      .pub-toolbar, .publication-row { flex-direction:column; align-items:stretch; }
-      h1 { font-size: 46px; }
-      section { padding:64px 0; }
+    h2.section-h{font-size:clamp(30px,3.8vw,48px);color:var(--navy);margin-bottom:16px}
+    .section-desc{color:var(--muted);font-size:17px;max-width:600px}
+    .section-head{margin-bottom:56px}
+    .section-head.center{text-align:center}
+    .section-head.center .section-desc{margin:0 auto}
+
+    /* ── ABOUT ── */
+    .about-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:72px;align-items:start}
+    .about-body{color:#475569;font-size:17px;line-height:1.75}
+    .about-body p+p{margin-top:18px}
+    .about-pills{display:flex;flex-wrap:wrap;gap:10px;margin-top:32px}
+    .pill{
+      background:var(--soft);border:1px solid var(--line);
+      color:var(--slate);font-size:13px;font-weight:600;
+      padding:8px 16px;border-radius:999px;
+    }
+
+    /* ── RESEARCH ── */
+    .research-feature{
+      display:grid;grid-template-columns:1fr 1fr;gap:0;
+      border-radius:32px;overflow:hidden;
+      border:1px solid var(--line);box-shadow:var(--shadow-lg);
+      margin-bottom:40px;
+    }
+    .research-feature.flip{grid-template-columns:1fr 1fr}
+    .feature-img{position:relative;overflow:hidden;min-height:380px}
+    .feature-img img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease}
+    .feature-img:hover img{transform:scale(1.03)}
+    .feature-img-caption{
+      position:absolute;bottom:16px;left:16px;right:16px;
+      background:rgba(4,23,58,.7);backdrop-filter:blur(8px);
+      color:rgba(255,255,255,.9);font-size:12px;font-weight:500;
+      padding:8px 14px;border-radius:10px;
+    }
+    .feature-body{
+      background:#fff;padding:48px 44px;
+      display:flex;flex-direction:column;justify-content:center;
+    }
+    .feature-tag{
+      display:inline-block;
+      background:var(--blue-lt);color:var(--blue);
+      font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+      padding:5px 12px;border-radius:999px;margin-bottom:20px;
+    }
+    .feature-body h3{font-size:28px;color:var(--navy);margin-bottom:16px}
+    .feature-body p{color:#475569;font-size:16px;line-height:1.7}
+    .research-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .rcard{
+      background:#fff;border:1px solid var(--line);border-radius:24px;
+      padding:28px 24px;transition:.2s;
+    }
+    .rcard:hover{box-shadow:var(--shadow-md);transform:translateY(-3px);border-color:var(--blue-lt)}
+    .rcard-icon{
+      width:44px;height:44px;border-radius:14px;
+      background:linear-gradient(135deg,var(--blue-lt),#e0e7ff);
+      display:flex;align-items:center;justify-content:center;
+      font-size:11px;font-weight:800;color:var(--blue);letter-spacing:.06em;
+      margin-bottom:18px;
+    }
+    .rcard h3{font-family:'DM Sans',sans-serif;font-size:16px;font-weight:700;color:var(--navy);margin-bottom:10px}
+    .rcard p{color:var(--muted);font-size:14px;line-height:1.6}
+
+    /* ── PUBLICATIONS ── */
+    .pubs-section{background:var(--navy);padding:96px 0}
+    .pubs-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;margin-bottom:40px}
+    .pubs-head .section-label{color:#93c5fd}
+    .pubs-head h2{color:#fff}
+    .pubs-head .section-desc{color:#94a3b8}
+    .pub-controls{display:flex;gap:10px;flex-wrap:wrap;align-items:center;flex-shrink:0}
+    .pub-search{
+      background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);
+      border-radius:999px;padding:10px 18px;color:#fff;
+      font-size:14px;font-family:inherit;outline:none;width:240px;
+    }
+    .pub-search::placeholder{color:rgba(255,255,255,.4)}
+    .pub-search:focus{border-color:rgba(147,197,253,.5);background:rgba(255,255,255,.12)}
+    .filter-btn{
+      background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);
+      color:rgba(255,255,255,.7);padding:9px 16px;border-radius:999px;
+      font-size:13px;font-weight:600;cursor:pointer;transition:.18s;font-family:inherit;
+    }
+    .filter-btn:hover,.filter-btn.active{
+      background:var(--blue-mid);border-color:var(--blue-mid);color:#fff;
+    }
+    .pub-year-divider{
+      color:#93c5fd;font-size:12px;font-weight:700;letter-spacing:.16em;
+      text-transform:uppercase;margin:32px 0 14px;
+      display:flex;align-items:center;gap:12px;
+    }
+    .pub-year-divider::after{content:'';flex:1;height:1px;background:rgba(255,255,255,.12)}
+    .pub-item{
+      background:rgba(255,255,255,.055);border:1px solid rgba(255,255,255,.1);
+      border-radius:18px;padding:22px 24px;margin-bottom:10px;
+      display:flex;align-items:flex-start;gap:20px;
+      transition:.18s;
+    }
+    .pub-item:hover{background:rgba(255,255,255,.09);border-color:rgba(255,255,255,.18)}
+    .pub-left{flex:1;min-width:0}
+    .pub-meta{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:10px}
+    .pub-badge{
+      font-size:11px;font-weight:700;padding:3px 9px;border-radius:999px;
+      letter-spacing:.06em;text-transform:uppercase;
+    }
+    .pub-badge--clinical{background:rgba(59,130,246,.22);color:#93c5fd}
+    .pub-badge--ai{background:rgba(139,92,246,.22);color:#c4b5fd}
+    .pub-badge--translational{background:rgba(16,185,129,.22);color:#6ee7b7}
+    .pub-journal{color:#94a3b8;font-size:13px;font-weight:500}
+    .pub-year-tag{color:rgba(255,255,255,.35);font-size:12px}
+    .pub-title{color:#f1f5f9;font-family:'DM Sans',sans-serif;font-size:16px;font-weight:600;line-height:1.45;margin-bottom:8px}
+    .pub-authors{color:#64748b;font-size:13px;line-height:1.5}
+    .pub-doi{
+      flex-shrink:0;
+      border:1px solid rgba(255,255,255,.16);
+      padding:9px 16px;border-radius:999px;
+      color:#93c5fd;font-size:13px;font-weight:700;
+      white-space:nowrap;transition:.18s;align-self:center;
+    }
+    .pub-doi:hover{background:rgba(147,197,253,.12);border-color:rgba(147,197,253,.4)}
+    .pub-empty{color:rgba(255,255,255,.3);text-align:center;padding:48px;font-size:16px}
+
+    /* ── PEOPLE ── */
+    .team-photo{
+      border-radius:28px;overflow:hidden;border:1px solid var(--line);
+      box-shadow:var(--shadow-lg);margin-bottom:48px;
+    }
+    .team-photo img{width:100%;height:auto;object-fit:cover}
+    .pi-card{
+      display:grid;grid-template-columns:220px 1fr;gap:36px;
+      border:1px solid var(--line);border-radius:28px;padding:36px;
+      background:#fff;box-shadow:var(--shadow-md);margin-bottom:40px;
+      align-items:start;
+    }
+    .pi-photo{
+      border-radius:20px;overflow:hidden;
+      aspect-ratio:1;background:var(--soft);
+    }
+    .pi-photo img{width:100%;height:100%;object-fit:cover;object-position:top center}
+    .pi-name{font-size:26px;color:var(--navy);margin:6px 0 4px}
+    .pi-title{color:var(--muted);font-size:15px;line-height:1.65}
+    .pi-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
+    .pi-tag{
+      background:var(--blue-lt);color:var(--blue);
+      font-size:12px;font-weight:700;padding:5px 12px;border-radius:999px;
+    }
+    .team-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+    .team-card{
+      background:#fff;border:1px solid var(--line);border-radius:20px;padding:24px;
+    }
+    .team-card h4{font-family:'DM Sans',sans-serif;font-size:14px;font-weight:700;color:var(--blue);text-transform:uppercase;letter-spacing:.1em;margin-bottom:14px}
+    .team-card ul{list-style:none}
+    .team-card li{font-size:15px;font-weight:600;color:var(--slate);padding:5px 0;border-bottom:1px solid var(--soft)}
+    .team-card li:last-child{border:none}
+    .team-card .sub{font-size:13px;font-weight:400;color:var(--muted)}
+
+    /* ── NEWS ── */
+    .news-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .news-card{
+      background:#fff;border:1px solid var(--line);border-radius:22px;padding:26px;
+      transition:.2s;display:flex;flex-direction:column;
+    }
+    .news-card:hover{box-shadow:var(--shadow-md);transform:translateY(-2px)}
+    .news-meta{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+    .news-source{background:var(--blue-lt);color:var(--blue);font-size:12px;font-weight:700;padding:4px 10px;border-radius:999px}
+    .news-date{background:var(--soft);color:var(--muted);font-size:12px;font-weight:600;padding:4px 10px;border-radius:999px}
+    .news-card h3{font-family:'DM Sans',sans-serif;font-size:15px;font-weight:700;color:var(--navy);line-height:1.45;margin-bottom:10px}
+    .news-card p{color:var(--muted);font-size:13px;line-height:1.6;flex:1}
+    .news-link{display:inline-flex;align-items:center;gap:4px;margin-top:16px;color:var(--blue);font-size:13px;font-weight:700}
+    .news-link:hover{opacity:.75}
+
+    /* ── CONTACT ── */
+    .contact-wrap{
+      background:linear-gradient(135deg,var(--navy),var(--navy2));
+      border-radius:32px;padding:64px;max-width:880px;margin:0 auto;
+      box-shadow:var(--shadow-lg);
+    }
+    .contact-wrap h2{color:#fff;font-size:40px;margin-bottom:16px}
+    .contact-wrap p{color:#94a3b8;font-size:17px;max-width:560px;margin-bottom:40px}
+    .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+    .contact-item{
+      background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);
+      border-radius:16px;padding:18px 22px;
+      color:#e2e8f0;font-size:15px;font-weight:500;
+    }
+    .contact-item strong{display:block;color:rgba(255,255,255,.45);font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;margin-bottom:6px}
+
+    /* ── FOOTER ── */
+    footer{
+      border-top:1px solid var(--line);padding:28px;
+      text-align:center;color:var(--muted);font-size:13px;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media(max-width:960px){
+      .nav-links,.nav-cta{display:none}
+      .hero-inner,.about-grid,.research-feature{grid-template-columns:1fr}
+      .feature-img{min-height:260px}
+      .research-cards,.team-grid,.news-grid{grid-template-columns:1fr 1fr}
+      .pi-card{grid-template-columns:1fr}
+      .pi-photo{aspect-ratio:auto;height:220px;width:220px;margin:0 auto}
+      .pub-controls{flex-direction:column;align-items:stretch}
+      .pub-search{width:100%}
+      .pubs-head{flex-direction:column;align-items:flex-start}
+      .contact-grid{grid-template-columns:1fr}
+      .contact-wrap{padding:40px 28px}
+      section{padding:72px 0}
+    }
+    @media(max-width:600px){
+      .research-cards,.team-grid,.news-grid{grid-template-columns:1fr}
+      .hero{padding:72px 0 64px}
+      .pub-item{flex-direction:column}
+      .pub-doi{align-self:flex-start}
+      .hero-illustration{padding:0;max-width:380px;margin:0 auto}
+    }
+
+    /* ══════════════════════════════════════
+       1. HERO BACKGROUND AMBIENT ANIMATION
+    ══════════════════════════════════════ */
+    @keyframes gradShift {
+      0%   { background-position: 0% 50%; }
+      50%  { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    @keyframes floatOrb1 {
+      0%, 100% { transform: translate(0, 0) scale(1); opacity: .18; }
+      33%       { transform: translate(40px, -30px) scale(1.12); opacity: .26; }
+      66%       { transform: translate(-20px, 20px) scale(.92); opacity: .14; }
+    }
+    @keyframes floatOrb2 {
+      0%, 100% { transform: translate(0, 0) scale(1); opacity: .12; }
+      40%       { transform: translate(-50px, 30px) scale(1.08); opacity: .2; }
+      75%       { transform: translate(25px, -20px) scale(.95); opacity: .1; }
+    }
+    .hero {
+      background: linear-gradient(160deg, #e8f0fe, #f0f5ff, #eef4ff, #e8f0fe);
+      background-size: 300% 300%;
+      animation: gradShift 12s ease infinite;
+    }
+    .hero-orb {
+      position: absolute; pointer-events: none; border-radius: 50%;
+      filter: blur(72px);
+    }
+    .hero-orb-1 {
+      width: 520px; height: 520px;
+      background: radial-gradient(circle, rgba(37,99,235,.22), transparent 70%);
+      top: -120px; right: 8%;
+      animation: floatOrb1 14s ease-in-out infinite;
+    }
+    .hero-orb-2 {
+      width: 380px; height: 380px;
+      background: radial-gradient(circle, rgba(124,58,237,.15), transparent 70%);
+      bottom: -60px; left: 20%;
+      animation: floatOrb2 18s ease-in-out infinite;
+    }
+
+    /* ══════════════════════════════════════
+       2. SCROLL REVEAL (Intersection Observer)
+    ══════════════════════════════════════ */
+    .reveal {
+      opacity: 0;
+      transform: translateY(36px);
+      transition: opacity .65s cubic-bezier(.22,.68,0,1.2),
+                  transform .65s cubic-bezier(.22,.68,0,1.2);
+    }
+    .reveal.from-left  { transform: translateX(-40px); }
+    .reveal.from-right { transform: translateX(40px); }
+    .reveal.visible {
+      opacity: 1;
+      transform: translate(0, 0);
+    }
+    .reveal-delay-1 { transition-delay: .1s; }
+    .reveal-delay-2 { transition-delay: .18s; }
+    .reveal-delay-3 { transition-delay: .26s; }
+    .reveal-delay-4 { transition-delay: .34s; }
+    .reveal-delay-5 { transition-delay: .42s; }
+    .reveal-delay-6 { transition-delay: .50s; }
+    .reveal-delay-7 { transition-delay: .58s; }
+    .reveal-delay-8 { transition-delay: .66s; }
+    .reveal-delay-9 { transition-delay: .74s; }
+
+    /* ══════════════════════════════════════
+       3. MICRO-INTERACTIONS
+    ══════════════════════════════════════ */
+    /* Nav link underline slide */
+    .nav-links a {
+      position: relative;
+      padding-bottom: 3px;
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute; bottom: 0; left: 50%; right: 50%;
+      height: 2px; border-radius: 2px;
+      background: var(--blue);
+      transition: left .22s ease, right .22s ease;
+    }
+    .nav-links a:hover::after { left: 0; right: 0; }
+
+    /* Button shimmer on hover */
+    .btn-primary {
+      position: relative; overflow: hidden;
+    }
+    .btn-primary::after {
+      content: '';
+      position: absolute; top: 0; left: -100%;
+      width: 60%; height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,.22), transparent);
+      transform: skewX(-20deg);
+      transition: left .5s ease;
+    }
+    .btn-primary:hover::after { left: 150%; }
+
+    /* rcard enhanced hover */
+    .rcard {
+      position: relative; overflow: hidden;
+    }
+    .rcard::before {
+      content: '';
+      position: absolute; inset: 0;
+      border-radius: 24px;
+      background: linear-gradient(135deg, rgba(18,82,200,.06), transparent);
+      opacity: 0;
+      transition: opacity .3s;
+    }
+    .rcard:hover::before { opacity: 1; }
+    .rcard:hover .rcard-icon {
+      background: linear-gradient(135deg, var(--blue), #3b82f6);
+      color: #fff;
+      box-shadow: 0 6px 18px rgba(18,82,200,.35);
+      transition: background .3s, color .3s, box-shadow .3s;
+    }
+
+    /* News card lift + accent border */
+    .news-card {
+      position: relative;
+      border-top: 3px solid transparent;
+      transition: transform .22s, box-shadow .22s, border-color .22s;
+    }
+    .news-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 16px 48px rgba(15,23,42,.12);
+      border-top-color: var(--blue);
+    }
+
+    /* PI card subtle glow */
+    .pi-card {
+      transition: box-shadow .3s, transform .3s;
+    }
+    .pi-card:hover {
+      box-shadow: 0 24px 64px rgba(18,82,200,.14);
+      transform: translateY(-2px);
+    }
+
+    /* feature-img overlay shimmer */
+    .feature-img::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(18,82,200,.08), transparent 60%);
+      opacity: 0; transition: opacity .4s;
+    }
+    .feature-img:hover::after { opacity: 1; }
+
+    /* DOI button glow */
+    .pub-doi {
+      position: relative;
+    }
+    .pub-doi:hover {
+      background: rgba(147,197,253,.15);
+      border-color: rgba(147,197,253,.55);
+      box-shadow: 0 0 16px rgba(147,197,253,.25);
+    }
+
+    /* filter button active indicator pulse */
+    @keyframes filterPulse {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(37,99,235,.4); }
+      50%       { box-shadow: 0 0 0 6px rgba(37,99,235,0); }
+    }
+    .filter-btn.active {
+      animation: filterPulse 1.8s ease-out;
+    }
+
+    /* Stat hover removed — replaced by hero-info card */
+
+    /* ══════════════════════════════════════
+       4. PUBLICATION SECTION FILTER ANIMATION
+    ══════════════════════════════════════ */
+    .pub-item {
+      transition: opacity .3s ease, transform .3s ease,
+                  background .18s, border-color .18s;
+    }
+    .pub-item.hiding {
+      opacity: 0;
+      transform: translateY(8px) scale(.98);
+    }
+    .pub-item.showing {
+      animation: pubReveal .35s cubic-bezier(.22,.68,0,1.1) forwards;
+    }
+    @keyframes pubReveal {
+      from { opacity: 0; transform: translateY(10px) scale(.98); }
+      to   { opacity: 1; transform: translateY(0) scale(1); }
+    }
+    .pub-year-divider {
+      transition: opacity .3s;
+    }
+    .pub-year-divider.hiding { opacity: 0; }
+
+    /* pub-item left accent on hover */
+    .pub-item {
+      border-left: 3px solid transparent;
+    }
+    .pub-item[data-cat="Clinical"]:hover   { border-left-color: #3b82f6; }
+    .pub-item[data-cat="AI"]:hover          { border-left-color: #8b5cf6; }
+    .pub-item[data-cat="Translational"]:hover { border-left-color: #10b981; }
+
+    /* search box focus glow */
+    .pub-search:focus {
+      box-shadow: 0 0 0 3px rgba(147,197,253,.2);
+      transition: box-shadow .2s, border-color .2s, background .2s;
+    }
+
+    /* count badge in filter buttons */
+    .filter-btn .btn-count {
+      font-size: 11px; opacity: .65;
+      background: rgba(255,255,255,.15);
+      padding: 1px 6px; border-radius: 999px;
+      margin-left: 4px;
     }
   </style>
 </head>
 <body>
-  <header class="nav">
-    <div class="container nav-inner">
-      <a class="brand" href="#home">
-        <div class="brand-mark">ST</div>
-        <div>
-          <div class="brand-title">SNU Transplantation</div>
-          <div class="brand-sub">Innovation Lab</div>
+
+<!-- NAV -->
+<header class="nav">
+  <div class="nav-inner">
+    <a class="brand" href="#home">
+      <div class="brand-mark">STIL</div>
+      <div class="brand-text">
+        <div class="brand-name">SNU Transplantation Innovation Lab</div>
+        <div class="brand-sub">Seoul National University</div>
+      </div>
+    </a>
+    <nav class="nav-links" aria-label="Main">
+      <a href="#about">About</a>
+      <a href="#research">Research</a>
+      <a href="#publications">Publications</a>
+      <a href="#team">People</a>
+      <a href="#news">News</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <a class="nav-cta" href="mailto:surgeonmsi@gmail.com">Contact Us</a>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-orb hero-orb-1"></div>
+  <div class="hero-orb hero-orb-2"></div>
+  <div class="container">
+    <div class="hero-inner">
+      <div class="reveal from-left">
+        <div class="eyebrow">Seoul National University Hospital &nbsp;·&nbsp; Dept. of Surgery</div>
+        <h1>Advancing<br/><em>Transplantation</em><br/>Science</h1>
+        <p class="hero-lead">Surgical innovation, artificial intelligence, and translational research — integrated to improve outcomes in kidney transplantation.</p>
+        <div class="hero-actions">
+          <a href="#research" class="btn btn-primary">Explore Research →</a>
+          <a href="#publications" class="btn btn-outline">Publications</a>
         </div>
-      </a>
-      <nav class="menu" aria-label="Main navigation">
-        <a href="#about">About</a>
-        <a href="#research">Research</a>
-        <a href="#projects">Projects</a>
-        <a href="#publications">Publications</a>
-        <a href="#team">People</a>
-        <a href="#contact">Contact</a>
-      </nav>
-      <a class="button" href="#contact">Contact</a>
+      </div>
+      <div class="hero-illustration reveal from-right reveal-delay-2">
+        <svg viewBox="0 0 480 420" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto">
+          <defs>
+            <radialGradient id="bgGlow" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="#dbeafe" stop-opacity=".6"/>
+              <stop offset="100%" stop-color="#eff6ff" stop-opacity="0"/>
+            </radialGradient>
+            <linearGradient id="kidneyGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#f87171"/>
+              <stop offset="100%" stop-color="#dc2626"/>
+            </linearGradient>
+            <linearGradient id="kidneyGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#fb923c"/>
+              <stop offset="100%" stop-color="#ea580c"/>
+            </linearGradient>
+            <linearGradient id="circuitGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#1252c8"/>
+              <stop offset="100%" stop-color="#7c3aed"/>
+            </linearGradient>
+            <linearGradient id="glowBlue" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stop-color="#2563eb" stop-opacity=".9"/>
+              <stop offset="100%" stop-color="#1252c8" stop-opacity=".6"/>
+            </linearGradient>
+            <filter id="softShadow" x="-20%" y="-20%" width="140%" height="140%">
+              <feDropShadow dx="0" dy="6" stdDeviation="10" flood-color="#1252c8" flood-opacity=".18"/>
+            </filter>
+            <filter id="glowFilter">
+              <feGaussianBlur stdDeviation="3" result="blur"/>
+              <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+            </filter>
+            <!-- animated dash -->
+            <style>
+              .flow-line { stroke-dasharray: 6 5; animation: flowAnim 2s linear infinite; }
+              .flow-line-slow { stroke-dasharray: 6 5; animation: flowAnim 3.5s linear infinite; }
+              @keyframes flowAnim { to { stroke-dashoffset: -22; } }
+              .pulse-ring { animation: pulseRing 2.4s ease-out infinite; transform-origin: center; }
+              .pulse-ring-2 { animation: pulseRing 2.4s ease-out .8s infinite; transform-origin: center; }
+              .pulse-ring-3 { animation: pulseRing 2.4s ease-out 1.6s infinite; transform-origin: center; }
+              @keyframes pulseRing {
+                0%   { opacity:.7; transform:scale(1); }
+                100% { opacity:0; transform:scale(1.55); }
+              }
+              .float-k { animation: floatK 4s ease-in-out infinite; }
+              .float-k2 { animation: floatK 4.8s ease-in-out .6s infinite; }
+              @keyframes floatK {
+                0%,100% { transform: translateY(0px); }
+                50%      { transform: translateY(-7px); }
+              }
+              .orbit-dot { animation: orbitAnim 6s linear infinite; transform-origin: 240px 210px; }
+              @keyframes orbitAnim { to { transform: rotate(360deg); } }
+              .blink { animation: blinkAnim 2.8s ease-in-out infinite; }
+              @keyframes blinkAnim { 0%,100%{opacity:.3} 50%{opacity:1} }
+              .scan-line { animation: scanAnim 3s ease-in-out infinite; }
+              @keyframes scanAnim {
+                0%,100% { transform: translateY(-28px); opacity:.6; }
+                50%      { transform: translateY(28px); opacity:.9; }
+              }
+            </style>
+          </defs>
+
+          <!-- Background glow -->
+          <circle cx="240" cy="210" r="200" fill="url(#bgGlow)"/>
+
+          <!-- Outer orbit ring -->
+          <circle cx="240" cy="210" r="168" fill="none" stroke="#dbeafe" stroke-width="1.5" stroke-dasharray="4 6" opacity=".7"/>
+          <circle cx="240" cy="210" r="138" fill="none" stroke="#e0e7ff" stroke-width="1" stroke-dasharray="3 8" opacity=".5"/>
+
+          <!-- Central kidney platform -->
+          <ellipse cx="240" cy="218" rx="98" ry="12" fill="#1252c8" opacity=".1"/>
+
+          <!-- LEFT KIDNEY -->
+          <g class="float-k" filter="url(#softShadow)">
+            <!-- body -->
+            <path d="M158,170 C138,165 120,178 118,200 C116,225 130,248 152,258 C166,264 178,260 185,248 C192,237 192,218 188,200 C184,182 170,173 158,170 Z"
+                  fill="url(#kidneyGrad1)" opacity=".95"/>
+            <!-- inner pelvis -->
+            <path d="M160,185 C150,183 143,191 144,202 C145,215 155,225 165,227 C172,228 178,222 177,213 C176,200 168,186 160,185 Z"
+                  fill="#fee2e2" opacity=".55"/>
+            <!-- cortex highlight -->
+            <path d="M148,175 C138,178 128,188 127,200" stroke="rgba(255,255,255,.5)" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+            <!-- top artery stub -->
+            <rect x="154" y="155" width="8" height="18" rx="4" fill="#ef4444"/>
+            <rect x="166" y="158" width="6" height="14" rx="3" fill="#f87171"/>
+          </g>
+
+          <!-- RIGHT KIDNEY -->
+          <g class="float-k2" filter="url(#softShadow)">
+            <path d="M322,170 C342,165 360,178 362,200 C364,225 350,248 328,258 C314,264 302,260 295,248 C288,237 288,218 292,200 C296,182 310,173 322,170 Z"
+                  fill="url(#kidneyGrad2)" opacity=".95"/>
+            <path d="M320,185 C330,183 337,191 336,202 C335,215 325,225 315,227 C308,228 302,222 303,213 C304,200 312,186 320,185 Z"
+                  fill="#ffedd5" opacity=".55"/>
+            <path d="M332,175 C342,178 352,188 353,200" stroke="rgba(255,255,255,.5)" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+            <rect x="318" y="155" width="8" height="18" rx="4" fill="#f97316"/>
+            <rect x="308" y="158" width="6" height="14" rx="3" fill="#fb923c"/>
+          </g>
+
+          <!-- Central AI / DNA orb -->
+          <g>
+            <!-- pulse rings -->
+            <circle class="pulse-ring"  cx="240" cy="205" r="36" fill="none" stroke="#2563eb" stroke-width="2"/>
+            <circle class="pulse-ring-2" cx="240" cy="205" r="36" fill="none" stroke="#7c3aed" stroke-width="1.5"/>
+            <circle class="pulse-ring-3" cx="240" cy="205" r="36" fill="none" stroke="#2563eb" stroke-width="1"/>
+            <!-- orb bg -->
+            <circle cx="240" cy="205" r="34" fill="url(#glowBlue)" filter="url(#glowFilter)"/>
+            <circle cx="240" cy="205" r="34" fill="white" opacity=".08"/>
+            <!-- DNA helix inside orb -->
+            <!-- left strand -->
+            <path d="M228,190 C232,196 232,205 228,211 C232,217 232,226 228,232" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" opacity=".9"/>
+            <!-- right strand -->
+            <path d="M252,190 C248,196 248,205 252,211 C248,217 248,226 252,232" fill="none" stroke="#bfdbfe" stroke-width="2" stroke-linecap="round" opacity=".9"/>
+            <!-- rungs -->
+            <line x1="230" y1="196" x2="250" y2="196" stroke="rgba(255,255,255,.7)" stroke-width="1.5" stroke-linecap="round"/>
+            <line x1="228" y1="205" x2="252" y2="205" stroke="rgba(255,255,255,.85)" stroke-width="1.5" stroke-linecap="round"/>
+            <line x1="230" y1="214" x2="250" y2="214" stroke="rgba(255,255,255,.7)" stroke-width="1.5" stroke-linecap="round"/>
+            <line x1="228" y1="223" x2="252" y2="223" stroke="rgba(255,255,255,.55)" stroke-width="1.4" stroke-linecap="round"/>
+            <!-- scan line across orb -->
+            <g style="clip-path:circle(34px at 240px 205px)">
+              <rect class="scan-line" x="207" y="196" width="66" height="2.5" rx="1.5" fill="rgba(147,197,253,.65)"/>
+            </g>
+          </g>
+
+          <!-- Data flow lines — kidney to center -->
+          <!-- left kidney → center -->
+          <path d="M188,210 Q210,210 206,205" fill="none" stroke="url(#circuitGrad)" stroke-width="2" opacity=".5"/>
+          <path class="flow-line" d="M188,210 Q210,210 206,205" fill="none" stroke="#60a5fa" stroke-width="1.8" opacity=".85"/>
+          <!-- right kidney → center -->
+          <path d="M292,210 Q270,210 274,205" fill="none" stroke="url(#circuitGrad)" stroke-width="2" opacity=".5"/>
+          <path class="flow-line" d="M292,210 Q270,210 274,205" fill="none" stroke="#a78bfa" stroke-width="1.8" opacity=".85"/>
+
+          <!-- Orbiting data dots -->
+          <g class="orbit-dot">
+            <circle cx="408" cy="210" r="6" fill="#2563eb" opacity=".9"/>
+            <circle cx="408" cy="210" r="10" fill="#2563eb" opacity=".2"/>
+          </g>
+          <g style="animation:orbitAnim 8s linear 3s infinite;transform-origin:240px 210px">
+            <circle cx="72" cy="210" r="5" fill="#7c3aed" opacity=".85"/>
+            <circle cx="72" cy="210" r="9" fill="#7c3aed" opacity=".2"/>
+          </g>
+
+          <!-- Floating label chips — 6개, 시계방향 배치 -->
+
+          <!-- 1. AI/CDSS — 상단 중앙 좌 -->
+          <g transform="translate(132,88)">
+            <rect x="0" y="0" width="94" height="30" rx="15" fill="white" stroke="#dbeafe" stroke-width="1.5" filter="url(#softShadow)"/>
+            <circle cx="15" cy="15" r="8" fill="#2563eb"/>
+            <text x="14" y="19" font-family="sans-serif" font-size="8" font-weight="800" fill="white" text-anchor="middle">AI</text>
+            <text x="55" y="19" font-family="sans-serif" font-size="11" font-weight="700" fill="#1252c8">CDSS</text>
+          </g>
+
+          <!-- 2. Registry — 상단 중앙 우 -->
+          <g transform="translate(262,88)">
+            <rect x="0" y="0" width="106" height="30" rx="15" fill="white" stroke="#e0e7ff" stroke-width="1.5" filter="url(#softShadow)"/>
+            <circle cx="15" cy="15" r="8" fill="#6366f1"/>
+            <text x="14.5" y="19" font-family="sans-serif" font-size="6" font-weight="800" fill="white" text-anchor="middle">REG</text>
+            <text x="59" y="19" font-family="sans-serif" font-size="10" font-weight="700" fill="#4338ca">Registry</text>
+          </g>
+
+          <!-- 3. Surgical Quality — 좌측 중간 -->
+          <g transform="translate(44,190)">
+            <rect x="0" y="0" width="126" height="30" rx="15" fill="white" stroke="#fef9c3" stroke-width="1.5" filter="url(#softShadow)"/>
+            <circle cx="15" cy="15" r="8" fill="#d97706"/>
+            <text x="14.5" y="19" font-family="sans-serif" font-size="5.5" font-weight="800" fill="white" text-anchor="middle">SQ</text>
+            <text x="68" y="19" font-family="sans-serif" font-size="9.5" font-weight="700" fill="#b45309">Surgical Quality</text>
+          </g>
+
+          <!-- 4. Immunosuppression — 우측 중간 -->
+          <g transform="translate(314,190)">
+            <rect x="0" y="0" width="136" height="30" rx="15" fill="white" stroke="#fce7f3" stroke-width="1.5" filter="url(#softShadow)"/>
+            <circle cx="15" cy="15" r="8" fill="#db2777"/>
+            <text x="14.5" y="19" font-family="sans-serif" font-size="5.2" font-weight="800" fill="white" text-anchor="middle">IS</text>
+            <text x="72" y="19" font-family="sans-serif" font-size="9" font-weight="700" fill="#be185d">Immunosuppression</text>
+          </g>
+
+          <!-- 5. Biomarkers — 하단 좌 -->
+          <g transform="translate(108,318)">
+            <rect x="0" y="0" width="116" height="30" rx="15" fill="white" stroke="#dcfce7" stroke-width="1.5" filter="url(#softShadow)"/>
+            <circle cx="15" cy="15" r="8" fill="#10b981"/>
+            <text x="14.5" y="19" font-family="sans-serif" font-size="6.5" font-weight="800" fill="white" text-anchor="middle">BIO</text>
+            <text x="65" y="19" font-family="sans-serif" font-size="10.5" font-weight="700" fill="#059669">Biomarkers</text>
+          </g>
+
+          <!-- 6. Xenotx — 하단 우 -->
+          <g transform="translate(262,318)">
+            <rect x="0" y="0" width="108" height="30" rx="15" fill="white" stroke="#ffe4e6" stroke-width="1.5" filter="url(#softShadow)"/>
+            <circle cx="15" cy="15" r="8" fill="#f43f5e"/>
+            <text x="14.5" y="19" font-family="sans-serif" font-size="5.8" font-weight="800" fill="white" text-anchor="middle">XENO</text>
+            <text x="60" y="19" font-family="sans-serif" font-size="10" font-weight="700" fill="#e11d48">Xenotx</text>
+          </g>
+
+          <!-- Blink dots on connection lines -->
+          <circle class="blink" cx="197" cy="210" r="3.5" fill="#60a5fa"/>
+          <circle class="blink" cx="283" cy="210" r="3.5" fill="#a78bfa" style="animation-delay:.9s"/>
+          <circle cx="240" cy="145" r="2.5" fill="#2563eb" opacity=".4"/>
+          <circle cx="240" cy="270" r="2.5" fill="#7c3aed" opacity=".4"/>
+
+          <!-- Bottom label -->
+          <text x="240" y="385" font-family="'DM Sans',sans-serif" font-size="11.5" font-weight="700"
+                fill="#64748b" text-anchor="middle" letter-spacing=".12em">SEOUL NATIONAL UNIVERSITY HOSPITAL</text>
+          <line x1="100" y1="375" x2="340" y2="375" stroke="#e2e8f0" stroke-width="1"/>
+        </svg>
+      </div>
     </div>
-  </header>
+  </div>
+</section>
 
-  <main>
-    <section class="hero" id="home">
-      <div class="container hero-grid">
-        <div>
-          <div class="eyebrow">Seoul National University Hospital · Seoul National University College of Medicine</div>
-          <h1>SNU Transplantation Innovation Lab</h1>
-          <p class="lead">Advancing transplantation through surgical innovation, artificial intelligence, and translational science.</p>
-          <div class="hero-actions">
-            <a href="#research" class="button">Explore Research →</a>
-            <a href="#publications" class="button secondary">Recent Publications</a>
-          </div>
-        </div>
-        <div class="hero-card">
-          <div class="mini-card"><strong>Kidney Transplantation</strong><span>Registry science, outcomes, and clinical quality improvement</span></div>
-          <div class="mini-card"><strong>Xenotransplantation</strong><span>Pig-to-NHP models, biomarkers, and translational readiness</span></div>
-          <div class="mini-card"><strong>AI & CDSS</strong><span>Dynamic prediction and deployable decision support</span></div>
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="reveal from-left">
+        <div class="section-head">
+          <div class="section-label">About the Lab</div>
+          <h2 class="section-h">Precision transplant science — from bedside to bench and back.</h2>
         </div>
       </div>
-    </section>
-
-    <section id="about">
-      <div class="container about-grid">
-        <div>
-          <div class="section-title" style="text-align:left;margin:0;">
-            <div class="label">About</div>
-            <h2>Precision transplant science from bedside to bench and back.</h2>
-          </div>
+      <div class="reveal from-right reveal-delay-1">
+        <div class="about-body">
+          <p>The SNU Transplantation Innovation Lab aims to improve outcomes in kidney transplantation, xenotransplantation, and transplant surgery through integrated clinical research, translational science, artificial intelligence, biomarker discovery, and surgical innovation.</p>
+          <p>We bring together multicenter clinical registries, immune monitoring platforms, advanced analytics, preclinical translational models, and surgical technology to support safer living donation, longer graft survival, and more precise post-transplant care.</p>
         </div>
-        <div class="about-text">
-          <p>SNU Transplantation Innovation Lab aims to improve outcomes in kidney transplantation, xenotransplantation, and transplant surgery through integrated clinical research, translational science, artificial intelligence, biomarker discovery, and surgical innovation.</p>
-          <p>The lab brings together multicenter clinical registries, immune monitoring platforms, advanced analytics, preclinical translational models, and surgical technology to support safer living donation, longer graft survival, and more precise post-transplant care.</p>
-        </div>
-      </div>
-    </section>
-
-    <section id="research" class="soft">
-      <div class="container">
-        <div class="section-title">
-          <div class="label">Research Areas</div>
-          <h2>A multidisciplinary platform for transplant innovation</h2>
-          <p>We combine clinical insight, mechanistic research, and computational methods to address unmet needs across the transplant continuum.</p>
-        </div>
-
-        <div class="featured">
-          <div class="image-card"><img src="images/image_1.png" alt="Porcine kidney non-human primate xenotransplantation model" /></div>
-          <div class="text-card">
-            <div class="small">Featured Translational Model</div>
-            <h3>Porcine-to-NHP kidney xenotransplantation</h3>
-            <p>Our xenotransplantation program uses preclinical large-animal models to evaluate graft function, immune injury, complement activation, ischemia-reperfusion injury, and biomarker-based monitoring strategies required for responsible clinical translation.</p>
-          </div>
-        </div>
-
-        <div class="grid research">
-          <div class="card"><div class="icon">KT</div><h3>Kidney Transplantation Outcomes</h3><p>Real-world outcome research to improve graft survival, patient safety, quality indicators, and center-level performance in kidney transplantation.</p></div>
-          <div class="card"><div class="icon">VOL</div><h3>Living Donor Safety and Kidney Volume Analytics</h3><p>AI-assisted volumetry, remnant kidney function prediction, and clinical decision support for safer living kidney donation.</p></div>
-          <div class="card"><div class="icon">IRI</div><h3>Ischemia-Reperfusion Injury and Graft Repair</h3><p>Mechanistic and translational studies focused on early graft injury, tissue repair, and long-term allograft protection.</p></div>
-          <div class="card"><div class="icon">XENO</div><h3>Xenotransplantation and Translational Models</h3><p>Preclinical pig-to-non-human primate models, immune monitoring, molecular biomarkers, and translational pathways toward clinical xenotransplantation.</p></div>
-          <div class="card"><div class="icon">AI</div><h3>AI and Clinical Decision Support Systems</h3><p>Predictive modeling, dynamic risk prediction, and deployable clinical decision support systems for transplant care.</p></div>
-          <div class="card"><div class="icon">BIO</div><h3>Biomarkers and Immune Monitoring</h3><p>Integration of dd-cfDNA, DSA, tacrolimus exposure, BKPyV, and longitudinal immune data for precision monitoring.</p></div>
-          <div class="card"><div class="icon">ROB</div><h3>Robotic and Innovative Transplant Surgery</h3><p>Surgical innovation in kidney transplantation, minimally invasive approaches, robotic techniques, and simulation-based education.</p></div>
+        <div class="about-pills">
+          <span class="pill">Kidney Transplantation</span>
+          <span class="pill">Xenotransplantation</span>
+          <span class="pill">AI &amp; CDSS</span>
+          <span class="pill">Biomarkers</span>
+          <span class="pill">Surgical Innovation</span>
+          <span class="pill">Living Donor Safety</span>
         </div>
       </div>
-    </section>
+    </div>
+  </div>
+</section>
 
-    <section id="projects">
-      <div class="container">
-        <div class="section-title">
-          <div class="label">Projects</div>
-          <h2>Active programs</h2>
-          <p>Selected ongoing initiatives in clinical, translational, and computational transplant research.</p>
-        </div>
+<!-- RESEARCH -->
+<section id="research" style="background:var(--soft)">
+  <div class="container">
+    <div class="section-head center">
+      <div class="section-label">Research</div>
+      <h2 class="section-h">A multidisciplinary platform for transplant innovation</h2>
+      <p class="section-desc">Clinical insight, mechanistic research, and computational methods — addressing unmet needs across the transplant continuum.</p>
+    </div>
 
-        <div class="featured reverse">
-          <div class="text-card">
-            <div class="small">AI Imaging Platform</div>
-            <h3>Kidney cortex AI auto-segmentation</h3>
-            <p>We use AI-assisted CT segmentation to quantify total and cortical kidney volume, support individualized living donor kidney selection, and develop structural–functional prediction models for donor safety and recipient outcomes.</p>
-          </div>
-          <div class="image-card" style="background:#020617;"><img src="images/image_2.png" alt="Kidney cortex AI auto-segmentation on CT" /></div>
-        </div>
+    <!-- Featured: Xenotransplantation -->
+    <div class="research-feature reveal">
+      <div class="feature-img">
+        <img src="images/image_1.jpg" alt="Porcine kidney NHP xenotransplantation surgical procedure"/>
+        <div class="feature-img-caption">Porcine kidney NHP xenotransplantation — in-lab surgical procedure</div>
+      </div>
+      <div class="feature-body">
+        <div class="feature-tag">Translational Model</div>
+        <h3>Porcine-to-NHP Kidney Xenotransplantation</h3>
+        <p>Our xenotransplantation program uses preclinical large-animal models to evaluate graft function, immune injury, complement activation, ischemia-reperfusion injury, and biomarker-based monitoring strategies required for responsible clinical translation.</p>
+      </div>
+    </div>
 
-        <div class="grid projects">
-          <div class="card"><div class="icon">01</div><h3>K-QIPS Kidney Transplant Registry</h3></div>
-          <div class="card"><div class="icon">02</div><h3>AI-CDSS for High-Risk Medication Safety</h3></div>
-          <div class="card"><div class="icon">03</div><h3>dd-cfDNA and dnDSA Immune Monitoring</h3></div>
-          <div class="card"><div class="icon">04</div><h3>Living Donor Kidney Volume Analytics</h3></div>
-          <div class="card"><div class="icon">05</div><h3>Pig-to-NHP Kidney Xenotransplantation</h3></div>
-          <div class="card"><div class="icon">06</div><h3>iCurve Dynamic Graft Survival Prediction</h3></div>
+    <!-- Featured: AI CT Segmentation -->
+    <div class="research-feature reveal reveal-delay-1" style="margin-bottom:40px">
+      <div class="feature-body" style="background:var(--navy);order:-1">
+        <div class="feature-tag" style="background:rgba(139,92,246,.25);color:#c4b5fd">AI Imaging Platform</div>
+        <h3 style="color:#f1f5f9">Kidney Cortex AI Auto-Segmentation</h3>
+        <p style="color:#94a3b8">AI-assisted CT segmentation quantifies total and cortical kidney volume, supports individualized living donor selection, and enables structural–functional prediction for donor safety and recipient outcomes.</p>
+      </div>
+      <div class="feature-img" style="background:#000">
+        <img src="images/image_2.jpg" alt="Kidney cortex AI auto-segmentation CT" style="object-fit:contain"/>
+        <div class="feature-img-caption">Bilateral kidney cortex segmentation — AI-assisted CT volumetry</div>
+      </div>
+    </div>
+
+    <!-- Research Cards -->
+    <div class="research-cards">
+      <div class="rcard reveal reveal-delay-1"><div class="rcard-icon">KT</div><h3>Kidney Transplantation Outcomes</h3><p>Real-world outcome research to improve graft survival, patient safety, and center-level performance.</p></div>
+      <div class="rcard reveal reveal-delay-2"><div class="rcard-icon">VOL</div><h3>Living Donor Safety &amp; Volumetry</h3><p>AI-assisted volumetry, remnant kidney function prediction, and CDSS for safer living kidney donation.</p></div>
+      <div class="rcard reveal reveal-delay-3"><div class="rcard-icon">IRI</div><h3>Ischemia-Reperfusion Injury</h3><p>Mechanistic and translational studies on early graft injury, tissue repair, and allograft protection.</p></div>
+      <div class="rcard reveal reveal-delay-4"><div class="rcard-icon">XENO</div><h3>Xenotransplantation</h3><p>Pig-to-NHP models, immune monitoring, molecular biomarkers, and translational pathways.</p></div>
+      <div class="rcard reveal reveal-delay-5"><div class="rcard-icon">AI</div><h3>AI &amp; Clinical Decision Support</h3><p>Predictive modeling, dynamic risk prediction, and deployable CDSS for transplant care.</p></div>
+      <div class="rcard reveal reveal-delay-6"><div class="rcard-icon">BIO</div><h3>Biomarkers &amp; Immune Monitoring</h3><p>dd-cfDNA, DSA, tacrolimus, BKPyV, and longitudinal immune data for precision monitoring.</p></div>
+      <div class="rcard reveal reveal-delay-7"><div class="rcard-icon">ROB</div><h3>Robotic &amp; Innovative Surgery</h3><p>Robotic kidney transplantation, minimally invasive approaches, and simulation-based education.</p></div>
+      <div class="rcard reveal reveal-delay-8"><div class="rcard-icon">REG</div><h3>Registry Science</h3><p>K-QIPS multicenter registry infrastructure for quality improvement and outcomes research.</p></div>
+      <div class="rcard reveal reveal-delay-9"><div class="rcard-icon">VAS</div><h3>Vascular Surgery</h3><p>Complex vascular reconstruction, popliteal entrapment, portomesenteric vein interventions.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- PUBLICATIONS -->
+<section class="pubs-section" id="publications">
+  <div class="container">
+    <div class="pubs-head reveal">
+      <div>
+        <div class="section-label">Publications</div>
+        <h2 style="color:#fff;font-size:clamp(28px,3.5vw,44px);margin-bottom:10px">Selected Publications</h2>
+        <p class="section-desc" style="color:#94a3b8">39 peer-reviewed publications spanning kidney transplantation, xenotransplantation, AI, biomarkers, and clinical prediction.</p>
+      </div>
+      <div class="pub-controls reveal reveal-delay-2">
+        <input class="pub-search" id="pubSearch" placeholder="Search titles, authors…"/>
+        <button class="filter-btn active" data-filter="all">All <span class="btn-count" id="cnt-all">39</span></button>
+        <button class="filter-btn" data-filter="Clinical">Clinical <span class="btn-count" id="cnt-Clinical"></span></button>
+        <button class="filter-btn" data-filter="AI">AI <span class="btn-count" id="cnt-AI"></span></button>
+        <button class="filter-btn" data-filter="Translational">Translational <span class="btn-count" id="cnt-Translational"></span></button>
+      </div>
+    </div>
+    <div id="pubList">
+<div class="pub-year-divider" data-year="2026">2026</div>
+<article class="pub-item" data-cat="Clinical" data-year="2026">
+  <div class="pub-meta">
+    <span class="pub-badge pub-badge--clinical">Clinical</span>
+    <span class="pub-journal">Front Immunol</span>
+    <span class="pub-year-tag">2026</span>
+  </div>
+  <h3 class="pub-title">Impact of dose-adjusted tacrolimus exposure phenotype on outcomes in kidney transplantation: a large-scale multicenter cohort study</h3>
+  <p class="pub-authors">Lim D, Kim S, Han A, Ahn J, et al.</p>
+  <a class="pub-doi" href="https://doi.org/10.3389/fimmu.2026.1811657" target="_blank" rel="noreferrer">DOI ↗</a>
+</article>
+<article class="pub-item" data-cat="Clinical" data-year="2026">
+  <div class="pub-meta">
+    <span class="pub-badge pub-badge--clinical">Clinical</span>
+    <span class="pub-journal">Transplantation</span>
+    <span class="pub-year-tag">2026</span>
+  </div>
+  <h3 class="pub-title">Deceased Organ Donation and Transplantation in LIMC: A Meeting Report</h3>
+  <p class="pub-authors">Ahn C, Stock P, Kim YH, Mannon R, et al.</p>
+  <a class="pub-doi" href="https://doi.org/10.1097/TP.0000000000005567" target="_blank" rel="noreferrer">DOI ↗</a>
+</article>
+<article class="pub-item" data-cat="AI" data-year="2026">
+  <div class="pub-meta">
+    <span class="pub-badge pub-badge--ai">AI</span>
+    <span class="pub-journal">J Thromb Haemost</span>
+    <span class="pub-year-tag">2026</span>
+  </div>
+  <h3 class="pub-title">Development of dynamic prediction models for venous thromboembolism recurrence and bleeding risks to guide personalized anticoagulant therapy</h3>
+  <p class="pub-authors">Jeong J, Ah YM, Han JM, Min S, et al.</p>
+  <a class="pub-doi" href="https://doi.org/10.1016/j.jtha.2026.01.018" target="_blank" rel="noreferrer">DOI ↗</a>
+</article>
+<article class="pub-item" data-cat="Clinical" data-year="2026">
+  <div class="pub-meta">
+    <span class="pub-badge pub-badge--clinical">Clinical</span>
+    <span class="pub-journal">Int J Mol Sci</span>
+    <span class="pub-year-tag">2026</span>
+  </div>
+  <h3 class="pub-title">In Vitro Study on the Effects of Rhododendron mucronulatum Branch Extract, Taxifolin-3-O-Arabinopyranoside and Taxifolin on Muscle Loss and Muscle Atrophy in C2C12 Murine Skeletal Muscle Cells</h3>
+  <p class="pub-authors">Lee HS, Jang HD, Kim TH, An DH, et al.</p>
+  <a class="pub-doi" href="https://doi.org/10.3390/ijms27020570" target="_blank" rel="noreferrer">DOI ↗</a>
+</article>
+<article class="pub-item" data-cat="Clinical" data-year="2026">
+  <div class="pub-meta">
+    <span class="pub-badge pub-badge--clinical">Clinical</span>
+    <span class="pub-journal">Kidney360</span>
+    <span class="pub-year-tag">2026</span>
+  </div>
+  <h3 class="pub-title">Comparative Impact of Early Graft Function on Kidney Transplantation Outcomes According to Donor Types</h3>
+  <p class="pub-authors">Song J, Kang E, Jeong S, Son HE, et al.</p>
+  <a class="pub-doi" href="https://doi.org/10.34067/KID.0000000933" target="_blank" rel="noreferrer">DOI ↗</a>
+</article>
+<div class="pub-year-divider" data-year="2025">2025</div>
+<article class="pub-item" data-cat="Translational" data-year="2025">
+  <div class="pub-meta">
+    <span class="pub-badge pub-badge--translational">Translational</span>
+    <span class="pub-journal">Xenotransplantation</span>
+    <span class="pub-year-tag">2025</span>
+  </div>
+  <h3 class="pub-title">Xenograft-Derived Cell-Free Deoxyribonucleic Acid as an Early Biomarker of Rejection in Genetically Engineered Pig-to-Non-Human Primate Kidney Xenotransplantation</h3>
+  <p class="pub-authors">Han KH, Jang JY, Jung M, Hwang SA, et al.</p>
+  <a class="pub-doi" href="https://doi.org/10.1111/xen.70100" target="_blank" rel="noreferrer">DOI ↗</a>
+</article>
+<article class="pub-item" data-cat="AI" data-year="2025">
+  <div class="pub-meta">
+    <span class="pub-badge pub-badge--ai">AI</span>
+    <span class="pub-journal">Int J Surg</span>
+    <span class="pub-year-tag">2025</span>
+  </div>
+  <h3 class="pub-title">A preoperative nomogram and web-based clinical decision support system for predicting early renal function after living donor kidney transplantation: a retrospective multicenter cohort study</h3>
+  <p class="pub-authors">Ahn J, Kang M, Kim S, Jo EA, et al.</p>
+  <a class="pub-doi" href="https://doi.org/10.1097/JS9.0000000000004057" target="_blank" rel="noreferrer">DOI ↗</a>
+</article>
+<article class="pub-item" data-cat="Clinical" data-year="2025">
+  <div class="pub-meta">
+    <span class="pub-badge pub-badge--clinical">Clinical</span>
+    <span class="pub-journal">Transplant Rev (Orlando)</span>
+    <span class="pub-year-tag">2025</span>
+  </div>
+  <h3 class="pub-title">The impact of standard- versus reduced-dose tacrolimus exposure on clinical outcomes in adult kidney transplant recipients: A systematic review and meta-analysis</h3>
+  <p class="pub-authors">Udomkarnjananun S, Soliman M, Min S, An HPH, et al.</p>
+  <a class="pub-doi" href="https://doi.org/10.1016/j.trre.2025.100958" target="_blank" rel="noreferrer">DOI ↗</a>
+</article>
+<article class="pub-item" data-cat="Clinical" data-year="2025">
+  <div class="pub-meta">
+    <span class="pub-badge pub-badge--clinical">Clinical</span>
+    <span class="pub-journal">Transpl Int</span>
+    <span class="pub-year-tag">2025</span>
+  </div>
+  <h3 class="pub-title">Risk Prediction and Management of BKPyV-DNAemia in Kidney Transplant Recipients: A Multicenter Analysis of Immunosuppressive Strategies</h3>
+  <p class="pub-authors">Kim JM, Kwon HE, Han A, Ko Y, et al.</p>
+  <a class="pub-doi" href="https://doi.org/10.3389/ti.2025.14738" target="_blank" rel="noreferrer">DOI ↗</a>
+</article>
+<article class="pub-item" data-cat="Clinical" data-year="2025">
+  <div class="pub-meta">
+    <span class="pub-badge pub-badge--clinical">Clinical</span>
+    <span class="pub-journal">BMC Nephrol</span>
+    <span class="pub-year-tag">2025</span>
+  </div>
+  <h3 class="pub-title">Effects of the pretransplant obesity on kidney transplant outcomes in Korea: a nationwide cohort study</h3>
+  <p class="pub-authors">Cho EY, Jeon YH, Huh KH, Hwang SD, et al.</p>
+  <a class="pub-doi" href="https://doi.org/10.1186/s12882-025-04359-x" target="_blank" rel="noreferrer">DOI ↗</a>
+</article>
+<article class="pub-item" data-cat="Translational" data-year="2025">
+  <div class="pub-meta">
+    <span class="pub-badge pub-badge--translational">Translational</span>
+    <span class="pub-journal">Transplant Proc</span>
+    <span class="pub-year-tag">2025</span>
+  </div>
+  <h3 class="pub-title">Current Status of Pig-to-NHP Xenotransplantation Research in Korea</h3>
+  <p class="pub-authors">Hwang SA, Min S, Shin KC, Chee HK, et al.</p>
+  <a class="pub-doi" href="https://doi.org/10.1016/j.transproceed.2025.05.004" target="_blank" rel="noreferrer">DOI ↗</a>
+</article>
+<article class="pub-item" data-cat="Clinical" data-year="2025">
+  <div class="pub-meta">
+    <span class="pub-badge pub-badge--clinical">Clinical</span>
+    <span class="pub-journal">Ren Fail</span>
+    <span class="pub-year-tag">2025</span>
+  </div>
+  <h3 class="pub-title">Persistent hyperparathyroidism after kidney transplantation in children</h3>
+  <p class="pub-authors">Park PG, Han A, Ahn YH, Min S, et al.</p>
+  <a class="pub-doi" href="https://doi.org/10.1080/0886022X.2025.2511279" target="_blank" rel="noreferrer">DOI ↗</a>
+</article>
+<article class="pub-item" data-cat="Clinical" data-year="2025">
+  <div class="pub-meta">
+    <span class="pub-badge pub-badge--clinical">Clinical</span>
+    <span class="pub-journal">Ann Surg Treat Res</span>
+    <span class="pub-year-tag">2025</span>
+  </div>
+  <h3 class="pub-title">Outcomes of pancreas transplantation over two decades: a single-center retrospective cohort study</h3>
+  <p class="pub-authors">Shin J, Woo HY, Jo EA, Cho A, et al.</p>
+  <a class="pub-doi" href="https://doi.org/10.4174/astr.2025.108.5.271" target="_blank" rel="noreferrer">DOI ↗</a>
+</article>
+<article class="pub-item" data-cat="Clinical" data-year="2025">
+  <div class="pub-meta">
+    <span class="pub-badge pub-badge--clinical">Clinical</span>
+    <span class="pub-journal">Eur J Vasc Endovasc Surg</span>
+    <span class="pub-year-tag">2025</span>
+  </div>
+  <h3 class="pub-title">Long Term Outcomes of Non-operative Treatment for Popliteal Artery Entrapment Syndrome: A Multicentre Study</h3>
+  <p class="pub-authors">Ahn J, Woo HY, Ahn S, Min S, et al.</p>
+  <a class="pub-doi" href="https://doi.org/10.1016/j.ejvs.2025.04.022" target="_blank" rel="noreferrer">DOI ↗</a>
+</article>
+<article class="pub-item" data-cat="Clinical" data-year="2025">
+  <div class="pub-meta">
+    <span class="pub-badge pub-badge--clinical">Clinical</span>
+    <span class="pub-journal">J Vasc Interv Radiol</span>
+    <span class="pub-year-tag">2025</span>
+  </div>
+  <h3 class="pub-title">Long-Term Outcomes of Angioplasty and Stent Placement for Portomesenteric Vein Obstruction following Hepatobiliary and Pancreatic Surgery</h3>
+  <p class="pub-authors">Park JK, Han A, Hur S, Lee M, et al.</p>
+  <a class="pub-doi" href="https://doi.org/10.1016/j.jvir.2025.03.022" target="_blank" rel="noreferrer">DOI ↗</a>
+</article>
+<article class="pub-item" data-cat="AI" data-year="2025">
+  <div class="pub-meta">
+    <span class="pub-badge pub-badge--ai">AI</span>
+    <span class="pub-journal">J Korean Med Sci</span>
+    <span class="pub-year-tag">2025</span>
+  </div>
+  <h3 class="pub-title">Strategies for Monitoring and Supporting Living Donors in Korea: An Expert Position Paper</h3>
+  <p class="pub-authors">Kang E, Woo HY, Hong SY, Lee H, et al.</p>
+  <a class="pub-doi" href="https://doi.org/10.3346/jkms.2025.40.e33" target="_blank" rel="noreferrer">DOI ↗</a>
+</article>
+<article class="pub-item" data-cat="Clinical" data-year="2025">
+  <div class="pub-meta">
+    <span class="pub-badge pub-badge--clinical">Clinical</span>
+    <span class="pub-journal">Kidney Res Clin Pract</span>
+    <span class="pub-year-tag">2025</span>
+  </div>
+  <h3 class="pub-title">Quality of life, socioeconomic impact, and medical consideration of living kidney donors: a comprehensive survey in Korea</h3>
+  <p class="pub-authors">Kang E, Kim Y, Lee JW, Han S, et al.</p>
+  <a class="pub-doi" href="https://doi.org/10.23876/j.krcp.24.191" target="_blank" rel="noreferrer">DOI ↗</a>
+</article>
+<article class="pub-item" data-cat="AI" data-year="2025">
+  <div class="pub-meta">
+    <span class="pub-badge pub-badge--ai">AI</span>
+    <span class="pub-journal">Ann Vasc Surg</span>
+    <span class="pub-year-tag">2025</span>
+  </div>
+  <h3 class="pub-title">The Impact of Simulator Training of Vascular Anastomosis and Video Assessment for Surgical Residents</h3>
+  <p class="pub-authors">Woo HY, Cho A, Ko M, Shin J, et al.</p>
+  <a class="pub-doi" href="https://doi.org/10.1016/j.avsg.2024.03.034" target="_blank" rel="noreferrer">DOI ↗</a>
+</article>
+<article class="pub-item" data-cat="Translational" data-year="2025">
+  <div class="pub-meta">
+    <span class="pub-badge pub-badge--translational">Translational</span>
+    <span class="pub-journal">Transplantation</span>
+    <span class="pub-year-tag">2025</span>
+  </div>
+  <h3 class="pub-title">Cysteine as an Innovative Biomarker for Kidney Injury</h3>
+  <p class="pub-authors">Woo HY, An JM, Park MY, Han A, et al.</p>
+  <a class="pub-doi" href="https://doi.org/10.1097/TP.0000000000005138" target="_blank" rel="noreferrer">DOI ↗</a>
+</article>
+<div class="pub-year-divider" data-year="2024">2024</div>
+<article class="pub-item" data-cat="Clinical" data-year="2024">
+  <div class="pub-meta">
+    <span class="pub-badge pub-badge--clinical">Clinical</span>
+    <span class="pub-journal">Pharmaceuticals (Basel)</span>
+    <span class="pub-year-tag">2024</span>
+  </div>
+  <h3 class="pub-title">Effects of Alnus japonica Hot Water Extract and Oregonin on Muscle Loss and Muscle Atrophy in C2C12 Murine Skeletal Muscle Cells</h3>
+  <p class="pub-authors">An DH, Lee CH, Kwon Y, Kim TH, et al.</p>
+  <a class="pub-doi" href="https://doi.org/10.3390/ph17121661" target="_blank" rel="noreferrer">DOI ↗</a>
+</article>
+<article class="pub-item" data-cat="Clinical" data-year="2024">
+  <div class="pub-meta">
+    <span class="pub-badge pub-badge--clinical">Clinical</span>
+    <span class="pub-journal">Vasc Specialist Int</span>
+    <span class="pub-year-tag">2024</span>
+  </div>
+  <h3 class="pub-title">Long-term Patency and Complications of Endovascular and Surgical Revascularization for Takayasu Arteritis</h3>
+  <p class="pub-authors">Shin J, Cho A, Han A, Ahn S, et al.</p>
+  <a class="pub-doi" href="https://doi.org/10.5758/vsi.240090" target="_blank" rel="noreferrer">DOI ↗</a>
+</article>
+<article class="pub-item" data-cat="Clinical" data-year="2024">
+  <div class="pub-meta">
+    <span class="pub-badge pub-badge--clinical">Clinical</span>
+    <span class="pub-journal">Int J Surg</span>
+    <span class="pub-year-tag">2024</span>
+  </div>
+  <h3 class="pub-title">Robot-assisted kidney transplantation: a propensity score-matched cohort analysis of early experience</h3>
+  <p class="pub-authors">Kim SJJ, Kim S, Cho A, Han A, et al.</p>
+  <a class="pub-doi" href="https://doi.org/10.1097/JS9.0000000000002019" target="_blank" rel="noreferrer">DOI ↗</a>
+</article>
+<article class="pub-item" data-cat="Clinical" data-year="2024">
+  <div class="pub-meta">
+    <span class="pub-badge pub-badge--clinical">Clinical</span>
+    <span class="pub-journal">Front Pharmacol</span>
+    <span class="pub-year-tag">2024</span>
+  </div>
+  <h3 class="pub-title">Exploring bleeding in oral anticoagulant users: assessing incidence by indications and risk factors in the entire nationwide cohort</h3>
+  <p class="pub-authors">Jeong J, Heo KN, Lee S, Ah YM, et al.</p>
+  <a class="pub-doi" href="https://doi.org/10.3389/fphar.2024.1399955" target="_blank" rel="noreferrer">DOI ↗</a>
+</article>
+<article class="pub-item" data-cat="AI" data-year="2024">
+  <div class="pub-meta">
+    <span class="pub-badge pub-badge--ai">AI</span>
+    <span class="pub-journal">Sci Rep</span>
+    <span class="pub-year-tag">2024</span>
+  </div>
+  <h3 class="pub-title">Perioperative glucose monitoring with continuous glucose monitors identifies risk factors for post-transplant diabetes mellitus in kidney transplant recipients</h3>
+  <p class="pub-authors">Shin J, Jo EA, Woo HY, Cho A, et al.</p>
+  <a class="pub-doi" href="https://doi.org/10.1038/s41598-024-72025-7" target="_blank" rel="noreferrer">DOI ↗</a>
+</article>
+<article class="pub-item" data-cat="Clinical" data-year="2024">
+  <div class="pub-meta">
+    <span class="pub-badge pub-badge--clinical">Clinical</span>
+    <span class="pub-journal">Ther Adv Med Oncol</span>
+    <span class="pub-year-tag">2024</span>
+  </div>
+  <h3 class="pub-title">Comprehensive analysis of nationwide anticancer drug-related complications in Korea: incidence, types, and cancer-specific considerations in contemporary oncology</h3>
+  <p class="pub-authors">Jeong J, Park S, Heo KN, Park SM, et al.</p>
+  <a class="pub-doi" href="https://doi.org/10.1177/17588359241272970" target="_blank" rel="noreferrer">DOI ↗</a>
+</article>
+<article class="pub-item" data-cat="Clinical" data-year="2024">
+  <div class="pub-meta">
+    <span class="pub-badge pub-badge--clinical">Clinical</span>
+    <span class="pub-journal">Curr Issues Mol Biol</span>
+    <span class="pub-year-tag">2024</span>
+  </div>
+  <h3 class="pub-title">Effects of Ulmus macrocarpa Extract and Catechin 7-O-β-D-apiofuranoside on Muscle Loss and Muscle Atrophy in C2C12 Murine Skeletal Muscle Cells</h3>
+  <p class="pub-authors">Kim MS, Park S, Kwon Y, Kim T, et al.</p>
+  <a class="pub-doi" href="https://doi.org/10.3390/cimb46080491" target="_blank" rel="noreferrer">DOI ↗</a>
+</article>
+<article class="pub-item" data-cat="AI" data-year="2024">
+  <div class="pub-meta">
+    <span class="pub-badge pub-badge--ai">AI</span>
+    <span class="pub-journal">Int J Surg</span>
+    <span class="pub-year-tag">2024</span>
+  </div>
+  <h3 class="pub-title">The role of artificial intelligence measured preoperative kidney volume in predicting kidney function loss in elderly kidney donors: a multicenter cohort study</h3>
+  <p class="pub-authors">Jo EA, Lee J, Moon S, Kim JS, et al.</p>
+  <a class="pub-doi" href="https://doi.org/10.1097/JS9.0000000000002030" target="_blank" rel="noreferrer">DOI ↗</a>
+</article>
+<article class="pub-item" data-cat="Clinical" data-year="2024">
+  <div class="pub-meta">
+    <span class="pub-badge pub-badge--clinical">Clinical</span>
+    <span class="pub-journal">Int J Mol Sci</span>
+    <span class="pub-year-tag">2024</span>
+  </div>
+  <h3 class="pub-title">The Impact of Ulmus macrocarpa Extracts on a Model of Sarcopenia-Induced C57BL/6 Mice</h3>
+  <p class="pub-authors">Lee CH, Kwon Y, Park S, Kim T, et al.</p>
+  <a class="pub-doi" href="https://doi.org/10.3390/ijms25116197" target="_blank" rel="noreferrer">DOI ↗</a>
+</article>
+<article class="pub-item" data-cat="Clinical" data-year="2024">
+  <div class="pub-meta">
+    <span class="pub-badge pub-badge--clinical">Clinical</span>
+    <span class="pub-journal">Int J Surg</span>
+    <span class="pub-year-tag">2024</span>
+  </div>
+  <h3 class="pub-title">Optimum tacrolimus trough levels for enhanced graft survival and safety in kidney transplantation: a retrospective multicenter real-world evidence study</h3>
+  <p class="pub-authors">Han A, Jo AJ, Kwon H, Kim YH, et al.</p>
+  <a class="pub-doi" href="https://doi.org/10.1097/JS9.0000000000001800" target="_blank" rel="noreferrer">DOI ↗</a>
+</article>
+<article class="pub-item" data-cat="Clinical" data-year="2024">
+  <div class="pub-meta">
+    <span class="pub-badge pub-badge--clinical">Clinical</span>
+    <span class="pub-journal">Sci Rep</span>
+    <span class="pub-year-tag">2024</span>
+  </div>
+  <h3 class="pub-title">A comparative analysis of clinical outcomes between conversion to mTOR inhibitor and calcineurin inhibitor reduction in managing BK viremia among kidney transplant patients</h3>
+  <p class="pub-authors">Cho A, Park S, Han A, Ha J, et al.</p>
+  <a class="pub-doi" href="https://doi.org/10.1038/s41598-024-60695-2" target="_blank" rel="noreferrer">DOI ↗</a>
+</article>
+<article class="pub-item" data-cat="Translational" data-year="2024">
+  <div class="pub-meta">
+    <span class="pub-badge pub-badge--translational">Translational</span>
+    <span class="pub-journal">Metabolites</span>
+    <span class="pub-year-tag">2024</span>
+  </div>
+  <h3 class="pub-title">Olaris Global Panel (OGP): A Highly Accurate and Reproducible Triple Quadrupole Mass Spectrometry-Based Metabolomics Method for Clinical Biomarker Discovery</h3>
+  <p class="pub-authors">Dorrani M, Zhao J, Bekhti N, Trimigno A, et al.</p>
+  <a class="pub-doi" href="https://doi.org/10.3390/metabo14050280" target="_blank" rel="noreferrer">DOI ↗</a>
+</article>
+<article class="pub-item" data-cat="Clinical" data-year="2024">
+  <div class="pub-meta">
+    <span class="pub-badge pub-badge--clinical">Clinical</span>
+    <span class="pub-journal">Pharmacoepidemiol Drug Saf</span>
+    <span class="pub-year-tag">2024</span>
+  </div>
+  <h3 class="pub-title">Medication-related incidents in acute care hospitals among different age groups: An analysis of national patient safety report data</h3>
+  <p class="pub-authors">Han JM, Heo KN, Kim AJ, Lee AY, et al.</p>
+  <a class="pub-doi" href="https://doi.org/10.1002/pds.5819" target="_blank" rel="noreferrer">DOI ↗</a>
+</article>
+<article class="pub-item" data-cat="Clinical" data-year="2024">
+  <div class="pub-meta">
+    <span class="pub-badge pub-badge--clinical">Clinical</span>
+    <span class="pub-journal">Front Immunol</span>
+    <span class="pub-year-tag">2024</span>
+  </div>
+  <h3 class="pub-title">The time-dependent changes in serum immunoglobulin after kidney transplantation and its association with infection</h3>
+  <p class="pub-authors">Jo EA, Min S, Jo AJ, Han A, et al.</p>
+  <a class="pub-doi" href="https://doi.org/10.3389/fimmu.2024.1374535" target="_blank" rel="noreferrer">DOI ↗</a>
+</article>
+<article class="pub-item" data-cat="Clinical" data-year="2024">
+  <div class="pub-meta">
+    <span class="pub-badge pub-badge--clinical">Clinical</span>
+    <span class="pub-journal">Eur Radiol</span>
+    <span class="pub-year-tag">2024</span>
+  </div>
+  <h3 class="pub-title">Prediction of acute rejection in renal allografts using shear-wave dispersion slope</h3>
+  <p class="pub-authors">Kim TM, Ahn H, Cho JY, Han A, et al.</p>
+  <a class="pub-doi" href="https://doi.org/10.1007/s00330-023-10492-8" target="_blank" rel="noreferrer">DOI ↗</a>
+</article>
+<article class="pub-item" data-cat="Clinical" data-year="2024">
+  <div class="pub-meta">
+    <span class="pub-badge pub-badge--clinical">Clinical</span>
+    <span class="pub-journal">Reg Anesth Pain Med</span>
+    <span class="pub-year-tag">2024</span>
+  </div>
+  <h3 class="pub-title">Anterior quadratus lumborum block for analgesia after living-donor renal transplantation: a double-blinded randomized controlled trial</h3>
+  <p class="pub-authors">Kim Y, Kim JT, Yang SM, Kim WH, et al.</p>
+  <a class="pub-doi" href="https://doi.org/10.1136/rapm-2023-104788" target="_blank" rel="noreferrer">DOI ↗</a>
+</article>
+<article class="pub-item" data-cat="Clinical" data-year="2024">
+  <div class="pub-meta">
+    <span class="pub-badge pub-badge--clinical">Clinical</span>
+    <span class="pub-journal">Ann Lab Med</span>
+    <span class="pub-year-tag">2024</span>
+  </div>
+  <h3 class="pub-title">Association Between Low Anti-spike Antibody Levels After the Third Dose of SARS-CoV-2 Vaccination and Hospitalization due to Symptomatic Breakthrough Infection in Kidney Transplant Recipients</h3>
+  <p class="pub-authors">Han A, Min S, Jo EA, Lee H, et al.</p>
+  <a class="pub-doi" href="https://doi.org/10.3343/alm.2024.44.1.64" target="_blank" rel="noreferrer">DOI ↗</a>
+</article>
+<div class="pub-year-divider" data-year="2023">2023</div>
+<article class="pub-item" data-cat="Clinical" data-year="2023">
+  <div class="pub-meta">
+    <span class="pub-badge pub-badge--clinical">Clinical</span>
+    <span class="pub-journal">Korean J Transplant</span>
+    <span class="pub-year-tag">2023</span>
+  </div>
+  <h3 class="pub-title">T cell posttransplant lymphoproliferative disorder after kidney transplantation progressing to acute liver failure: a case report</h3>
+  <p class="pub-authors">Cho JM, Kim YC, Min S, Kim TM, et al.</p>
+  <a class="pub-doi" href="https://doi.org/10.4285/kjt.23.0045" target="_blank" rel="noreferrer">DOI ↗</a>
+</article>
+<article class="pub-item" data-cat="Clinical" data-year="2023">
+  <div class="pub-meta">
+    <span class="pub-badge pub-badge--clinical">Clinical</span>
+    <span class="pub-journal">Sci Rep</span>
+    <span class="pub-year-tag">2023</span>
+  </div>
+  <h3 class="pub-title">Association of high intra-patient variability in tacrolimus exposure with calcineurin inhibitor nephrotoxicity in kidney transplantation</h3>
+  <p class="pub-authors">Kim H, Han A, Ahn S, Min SK, et al.</p>
+  <a class="pub-doi" href="https://doi.org/10.1038/s41598-023-43755-x" target="_blank" rel="noreferrer">DOI ↗</a>
+</article>
+<article class="pub-item" data-cat="Translational" data-year="2023">
+  <div class="pub-meta">
+    <span class="pub-badge pub-badge--translational">Translational</span>
+    <span class="pub-journal">J Immunol Methods</span>
+    <span class="pub-year-tag">2023</span>
+  </div>
+  <h3 class="pub-title">Application of microphysiologic system to assess neutrophil extracellular trap in xenotransplantation</h3>
+  <p class="pub-authors">Yadav SK, Park S, Lee YM, Hurh S, et al.</p>
+  <a class="pub-doi" href="https://doi.org/10.1016/j.jim.2023.113537" target="_blank" rel="noreferrer">DOI ↗</a>
+</article>
+
+    </div>
+    <div class="pub-empty" id="pubEmpty" style="display:none">No publications match your search.</div>
+  </div>
+</section>
+
+<!-- PEOPLE -->
+<section id="team">
+  <div class="container">
+    <div class="section-head center">
+      <div class="section-label">People</div>
+      <h2 class="section-h">Our Team</h2>
+      <p class="section-desc">Surgeon-scientists, PhD researchers, clinical fellows, students, and research coordinators advancing transplantation science.</p>
+    </div>
+
+    <div class="team-photo reveal">
+      <img src="images/image_3.jpg" alt="SNU Transplantation Innovation Lab group photo — Seoul National University Department of Surgery"/>
+    </div>
+
+    <div class="pi-card reveal reveal-delay-1">
+      <div class="pi-photo">
+        <img src="images/image_4.jpg" alt="Sangil Min, MD, PhD — Principal Investigator"/>
+      </div>
+      <div>
+        <div class="section-label">Principal Investigator</div>
+        <h3 class="pi-name">Sangil Min, MD, PhD</h3>
+        <p class="pi-title">
+          Professor of Surgery, Seoul National University College of Medicine<br/>
+          Director, Organ Transplantation Center, Seoul National University Hospital<br/>
+          Head, Division of Transplantation and Vascular Surgery, SNUH
+        </p>
+        <div class="pi-tags">
+          <span class="pi-tag">Kidney Transplantation</span>
+          <span class="pi-tag">Xenotransplantation</span>
+          <span class="pi-tag">AI-CDSS</span>
+          <span class="pi-tag">Robotic Surgery</span>
+          <span class="pi-tag">Vascular Surgery</span>
         </div>
       </div>
-    </section>
+    </div>
 
-    <section id="publications" class="pubs">
-      <div class="container">
-        <div class="pub-toolbar">
-          <div class="pub-heading">
-            <div class="label">Recent Publications</div>
-            <h2>Selected publications</h2>
-            <p>Recent work spanning kidney transplantation, xenotransplantation, immunosuppression, biomarkers, and clinical prediction.</p>
-          </div>
-          <input class="search" id="publicationSearch" placeholder="Search publications" />
-        </div>
-
-        <div id="publicationList">
-          <div class="pub-group-title">2026 Updates</div>
-          <article class="publication">
-            <div class="publication-row">
-              <div>
-                <div class="badges"><span class="badge">2026</span><span class="badge journal">Frontiers in Immunology</span></div>
-                <h3>Impact of dose-adjusted tacrolimus exposure phenotype on outcomes in kidney transplantation: a large-scale multicenter cohort study</h3>
-                <p>Lim D, Kim S, Han A, Ahn J, Kim YH, Huh KH, Park JB, Park SC, Ha J, Min S.</p>
-              </div>
-              <a class="doi" href="https://doi.org/10.3389/fimmu.2026.1811657" target="_blank" rel="noreferrer">DOI ↗</a>
-            </div>
-          </article>
-          <article class="publication">
-            <div class="publication-row">
-              <div>
-                <div class="badges"><span class="badge">2026</span><span class="badge journal">Transplantation</span></div>
-                <h3>Deceased Organ Donation and Transplantation in LIMC: A Meeting Report</h3>
-                <p>Ahn C, Stock P, Kim YH, Mannon R, Najafizadeh K, Delpierre CB, Punch J, Lkhaakhuu OE, Niño-Murcia A, Danguilan R, West L, Tullius SG, Pamugas G, Lumpaopong A, Ahmed E, Matamoros MA, Min S, Moon IS, Yoon HB, Chapman JR.</p>
-              </div>
-              <a class="doi" href="https://doi.org/10.1097/TP.0000000000005567" target="_blank" rel="noreferrer">DOI ↗</a>
-            </div>
-          </article>
-          <article class="publication">
-            <div class="publication-row">
-              <div>
-                <div class="badges"><span class="badge">2026</span><span class="badge journal">Journal of Thrombosis and Haemostasis</span></div>
-                <h3>Development of dynamic prediction models for venous thromboembolism recurrence and bleeding risks to guide personalized anticoagulant therapy</h3>
-                <p>Jeong J, Ah YM, Han JM, Min S, Shin J, Heo KN, Lee JY.</p>
-              </div>
-              <a class="doi" href="https://doi.org/10.1016/j.jtha.2026.01.018" target="_blank" rel="noreferrer">DOI ↗</a>
-            </div>
-          </article>
-          <article class="publication">
-            <div class="publication-row">
-              <div>
-                <div class="badges"><span class="badge">2026</span><span class="badge journal">Kidney360</span></div>
-                <h3>Comparative Impact of Early Graft Function on Kidney Transplantation Outcomes According to Donor Type</h3>
-                <p>Min S and colleagues.</p>
-              </div>
-              <a class="doi" href="https://doi.org/10.34067/KID.0000000933" target="_blank" rel="noreferrer">DOI ↗</a>
-            </div>
-          </article>
-          <div class="pub-group-title">Xenotransplantation and Translational Science</div>
-          <article class="publication">
-            <div class="publication-row">
-              <div>
-                <div class="badges"><span class="badge">2025</span><span class="badge journal">Xenotransplantation</span></div>
-                <h3>Xenograft-Derived Cell-Free Deoxyribonucleic Acid as an Early Biomarker of Rejection in Genetically Engineered Pig-to-Non-Human Primate Kidney Xenotransplantation</h3>
-                <p>Han KH, Jang JY, Jung M, Hwang SA, Yun IH, Lee H, Seong M, Kim B, Jeong JC, Hwang JH, Min S, Kim H, Kim BS, Yun IJ, Yang J.</p>
-              </div>
-              <a class="doi" href="https://doi.org/10.1111/xen.70100" target="_blank" rel="noreferrer">DOI ↗</a>
-            </div>
-          </article>
-          <article class="publication">
-            <div class="publication-row">
-              <div>
-                <div class="badges"><span class="badge">2025</span><span class="badge journal">Transplantation Proceedings</span></div>
-                <h3>Current Status of Pig-to-NHP Xenotransplantation Research in Korea</h3>
-                <p>Min S and colleagues.</p>
-              </div>
-              <a class="doi" href="https://doi.org/10.1016/j.transproceed.2025.05.004" target="_blank" rel="noreferrer">DOI ↗</a>
-            </div>
-          </article>
-          <div class="pub-group-title">AI, Prediction Models, and Surgical Quality</div>
-          <article class="publication">
-            <div class="publication-row">
-              <div>
-                <div class="badges"><span class="badge">2025</span><span class="badge journal">International Journal of Surgery</span></div>
-                <h3>A preoperative nomogram and web-based clinical decision support system for predicting early renal function after living donor kidney transplantation</h3>
-                <p>Min S and colleagues.</p>
-              </div>
-              <a class="doi" href="https://doi.org/10.1097/JS9.0000000000004057" target="_blank" rel="noreferrer">DOI ↗</a>
-            </div>
-          </article>
-          <article class="publication">
-            <div class="publication-row">
-              <div>
-                <div class="badges"><span class="badge">2025</span><span class="badge journal">Transplant International</span></div>
-                <h3>Risk Prediction and Management of BKPyV-DNAemia in Kidney Transplant Recipients: A Multicenter Analysis</h3>
-                <p>Min S and colleagues.</p>
-              </div>
-              <a class="doi" href="https://doi.org/10.3389/ti.2025.14738" target="_blank" rel="noreferrer">DOI ↗</a>
-            </div>
-          </article>
-          <article class="publication">
-            <div class="publication-row">
-              <div>
-                <div class="badges"><span class="badge">2025</span><span class="badge journal">BMC Nephrology</span></div>
-                <h3>Effects of the pretransplant obesity on kidney transplant outcomes in Korea: a nationwide cohort study</h3>
-                <p>Min S and colleagues.</p>
-              </div>
-              <a class="doi" href="https://doi.org/10.1186/s12882-025-04359-x" target="_blank" rel="noreferrer">DOI ↗</a>
-            </div>
-          </article>
-          <div class="pub-group-title">Immunosuppression and Long-term Outcomes</div>
-          <article class="publication">
-            <div class="publication-row">
-              <div>
-                <div class="badges"><span class="badge">2025</span><span class="badge journal">Transplantation Reviews</span></div>
-                <h3>The impact of standard- versus reduced-dose tacrolimus exposure on clinical outcomes in adult kidney transplantation</h3>
-                <p>Min S and colleagues.</p>
-              </div>
-              <a class="doi" href="https://doi.org/10.1016/j.trre.2025.100958" target="_blank" rel="noreferrer">DOI ↗</a>
-            </div>
-          </article>
-          <article class="publication">
-            <div class="publication-row">
-              <div>
-                <div class="badges"><span class="badge">2025</span><span class="badge journal">Renal Failure</span></div>
-                <h3>Persistent hyperparathyroidism after kidney transplantation in children</h3>
-                <p>Min S and colleagues.</p>
-              </div>
-              <a class="doi" href="https://doi.org/10.1080/0886022X.2025.2511279" target="_blank" rel="noreferrer">DOI ↗</a>
-            </div>
-          </article>
-        </div>
+    <div class="team-grid">
+      <div class="team-card reveal reveal-delay-1">
+        <h4>Research Faculty</h4>
+        <ul><li>Sang Wan Kim <span class="sub">PhD</span></li></ul>
       </div>
-    </section>
-
-    <section id="team">
-      <div class="container">
-        <div class="section-title">
-          <div class="label">People</div>
-          <h2>Our team</h2>
-          <p>A multidisciplinary team of surgeon-scientists, PhD researchers, clinical fellows, students, and research coordinators working together to advance transplantation science.</p>
-        </div>
-
-        <div class="people-photo"><img src="images/image_3.png" alt="SNU Transplantation Innovation Lab group photo" /></div>
-
-        <div class="pi-card">
-          <div class="pi-photo"><img src="images/image_4.png" alt="Sangil Min, MD, PhD" /></div>
-          <div>
-            <div class="section-title" style="text-align:left;margin:0;">
-              <div class="label">Principal Investigator</div>
-              <h3 style="font-size:28px;margin:6px 0 0;">Sangil Min, MD, PhD</h3>
-            </div>
-            <p>Professor of Surgery, Seoul National University College of Medicine<br>
-            Director, Organ Transplantation Center, Seoul National University Hospital<br>
-            Head, Division of Transplantation and Vascular Surgery, SNUH</p>
-            <div class="tags"><span class="tag">Kidney Transplantation</span><span class="tag">Xenotransplantation</span><span class="tag">AI-CDSS</span><span class="tag">Surgical Innovation</span></div>
-          </div>
-        </div>
-
-        <div class="people-grid">
-          <div class="card"><h3>Research Faculty</h3><ul><li>Sang Wan Kim, PhD</li></ul></div>
-          <div class="card"><h3>Graduate Researcher</h3><ul><li>Dong Hoon Jung</li><li style="font-weight:500;color:#64748b;">PhD Candidate</li></ul></div>
-          <div class="card"><h3>Research Assistants</h3><ul><li>Minyoung Park</li><li>Minkyung Kwak</li><li>Jiyeon Choi</li><li>Changyeop Song</li></ul></div>
-          <div class="card"><h3>Clinical Research Assistants</h3><ul><li>Hyejin Hong</li><li>Sohyun Kwon</li><li>Hyebin Ban</li></ul></div>
-        </div>
+      <div class="team-card reveal reveal-delay-2">
+        <h4>Graduate Researcher</h4>
+        <ul>
+          <li>Dong Hoon Jung <span class="sub">PhD Candidate</span></li>
+        </ul>
       </div>
-    </section>
-
-    <section id="news" class="soft">
-      <div class="container">
-        <div class="section-title">
-          <div class="label">News</div>
-          <h2>Media coverage</h2>
-          <p>Selected news articles and interviews highlighting transplantation research, surgical innovation, AI-enabled donor assessment, immunosuppression, and xenotransplantation.</p>
-        </div>
-        <div class="grid news-grid">
-          <div class="card">
-            <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px;">
-              <span class="tag">메디코파마뉴스</span>
-              <span class="tag" style="background:#f1f5f9;color:#475569;">2026.04.20</span>
-            </div>
-            <h3>[명약 인사이드][프로그랍]② &#x27;평생 친구&#x27;된 면역억제 치료</h3>
-            <p>Interview on transplantation and long-term immunosuppressive therapy.</p>
-            <a href="https://www.medicopharma.co.kr/news/articleView.html?idxno=67798" target="_blank" rel="noreferrer" style="display:inline-flex;margin-top:18px;color:var(--blue);font-weight:800;font-size:14px;">Read more ↗</a>
-          </div>
-          <div class="card">
-            <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px;">
-              <span class="tag">헬스경향</span>
-              <span class="tag" style="background:#f1f5f9;color:#475569;">2026.03.26</span>
-            </div>
-            <h3>[장기기증 특집] 삼중장벽 넘어야 생명나눔 꽃핀다</h3>
-            <p>Feature article on organ donation, public trust, and system-level barriers.</p>
-            <a href="https://www.k-health.com/news/articleView.html?idxno=90972" target="_blank" rel="noreferrer" style="display:inline-flex;margin-top:18px;color:var(--blue);font-weight:800;font-size:14px;">Read more ↗</a>
-          </div>
-          <div class="card">
-            <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px;">
-              <span class="tag">데일리안</span>
-              <span class="tag" style="background:#f1f5f9;color:#475569;">2025.12.30</span>
-            </div>
-            <h3>서울대병원 김효수·민상일 교수, 국가연구개발 우수성과 100선 선정</h3>
-            <p>National recognition for clinical validation and standardization of robotic kidney transplantation.</p>
-            <a href="https://www.dailian.co.kr/news/view/1592222/%EC%84%9C%EC%9A%B8%EB%8C%80%EB%B3%91%EC%9B%90-%EA%B9%80%ED%9A%A8%EC%88%98%EB%AF%BC%EC%83%81%EC%9D%BC-%EA%B5%90%EC%88%98-%EA%B5%AD%EA%B0%80%EC%97%B0%EA%B5%AC-2025" target="_blank" rel="noreferrer" style="display:inline-flex;margin-top:18px;color:var(--blue);font-weight:800;font-size:14px;">Read more ↗</a>
-          </div>
-          <div class="card">
-            <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px;">
-              <span class="tag">중앙일보</span>
-              <span class="tag" style="background:#f1f5f9;color:#475569;">2025.09.03</span>
-            </div>
-            <h3>서울대병원 민상일 교수를 만나다</h3>
-            <p>Interview introducing kidney transplantation, surgical innovation, and clinical research.</p>
-            <a href="https://www.joongang.co.kr/article/25382764" target="_blank" rel="noreferrer" style="display:inline-flex;margin-top:18px;color:var(--blue);font-weight:800;font-size:14px;">Read more ↗</a>
-          </div>
-          <div class="card">
-            <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px;">
-              <span class="tag">데일리메디</span>
-              <span class="tag" style="background:#f1f5f9;color:#475569;">2025.07.10</span>
-            </div>
-            <h3>서울대병원 김효수·민상일·이승표 교수 ‘R&amp;D 우수’</h3>
-            <p>Coverage of the 2025 Health and Medical R&amp;D Excellent Achievements.</p>
-            <a href="https://www.dailymedi.com/news/news_view.php?wr_id=926789" target="_blank" rel="noreferrer" style="display:inline-flex;margin-top:18px;color:var(--blue);font-weight:800;font-size:14px;">Read more ↗</a>
-          </div>
-          <div class="card">
-            <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px;">
-              <span class="tag">중앙일보</span>
-              <span class="tag" style="background:#f1f5f9;color:#475569;">2025</span>
-            </div>
-            <h3>서울대병원 &quot;단일공 로봇 신장이식, 아시아 최초 성공&quot;</h3>
-            <p>Media coverage of single-port robotic kidney transplantation at Seoul National University Hospital.</p>
-            <a href="https://www.joongang.co.kr/article/25314951" target="_blank" rel="noreferrer" style="display:inline-flex;margin-top:18px;color:var(--blue);font-weight:800;font-size:14px;">Read more ↗</a>
-          </div>
-          <div class="card">
-            <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px;">
-              <span class="tag">청년의사</span>
-              <span class="tag" style="background:#f1f5f9;color:#475569;">2024.11.09</span>
-            </div>
-            <h3>조은아 교수, 대한외과학회 &#x27;최우수 연구자상&#x27; 수상</h3>
-            <p>AI-assisted kidney volume research developed with the SNUH transplant team.</p>
-            <a href="https://www.docdocdoc.co.kr/news/articleView.html?idxno=3022818" target="_blank" rel="noreferrer" style="display:inline-flex;margin-top:18px;color:var(--blue);font-weight:800;font-size:14px;">Read more ↗</a>
-          </div>
-          <div class="card">
-            <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px;">
-              <span class="tag">헬스조선</span>
-              <span class="tag" style="background:#f1f5f9;color:#475569;">2024.08.27</span>
-            </div>
-            <h3>AI로 ‘고령 신장 기증자’ 위험 예측해 이식 결정한다</h3>
-            <p>AI kidney cortex volumetry for safer decision-making in older living kidney donors.</p>
-            <a href="https://health.chosun.com/site/data/html_dir/2024/08/27/2024082701506.html" target="_blank" rel="noreferrer" style="display:inline-flex;margin-top:18px;color:var(--blue);font-weight:800;font-size:14px;">Read more ↗</a>
-          </div>
-          <div class="card">
-            <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px;">
-              <span class="tag">데일리메디</span>
-              <span class="tag" style="background:#f1f5f9;color:#475569;">2024.08.07</span>
-            </div>
-            <h3>뇌사자 공여 신장이식 성공률 높아진다</h3>
-            <p>Research on cysteine-based detection of ischemic kidney injury in deceased donor kidneys.</p>
-            <a href="https://www.dailymedi.com/news/news_view.php?wr_id=915021" target="_blank" rel="noreferrer" style="display:inline-flex;margin-top:18px;color:var(--blue);font-weight:800;font-size:14px;">Read more ↗</a>
-          </div>
-          <div class="card">
-            <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px;">
-              <span class="tag">헬스경향</span>
-              <span class="tag" style="background:#f1f5f9;color:#475569;">2024.06.24</span>
-            </div>
-            <h3>신장이식수술 후 면역억제제 얼마나 써야 할까…국내 연구진 ‘타크로리무스’ 최적 농도 확인</h3>
-            <p>Multicenter real-world study on tacrolimus trough levels and long-term kidney transplant outcomes.</p>
-            <a href="https://www.k-health.com/news/articleView.html?idxno=72886" target="_blank" rel="noreferrer" style="display:inline-flex;margin-top:18px;color:var(--blue);font-weight:800;font-size:14px;">Read more ↗</a>
-          </div>
-          <div class="card">
-            <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px;">
-              <span class="tag">한국일보</span>
-              <span class="tag" style="background:#f1f5f9;color:#475569;">2024.06.24</span>
-            </div>
-            <h3>콩팥이식 후 장기 생존하려면 &#x27;면역 억제제&#x27; 농도 유지가 관건</h3>
-            <p>Public-facing article on tacrolimus exposure and kidney transplant survival.</p>
-            <a href="https://www.hankookilbo.com/news/article/A2024062409470001947?did=NA" target="_blank" rel="noreferrer" style="display:inline-flex;margin-top:18px;color:var(--blue);font-weight:800;font-size:14px;">Read more ↗</a>
-          </div>
-          <div class="card">
-            <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px;">
-              <span class="tag">메디칼업저버</span>
-              <span class="tag" style="background:#f1f5f9;color:#475569;">2023.11.20</span>
-            </div>
-            <h3>돼지에서 사람에게…이종장기이식 임상시험 5년 이내 가능성</h3>
-            <p>Interview and commentary on the clinical translation of xenotransplantation.</p>
-            <a href="https://www.monews.co.kr/news/articleView.html?idxno=327988" target="_blank" rel="noreferrer" style="display:inline-flex;margin-top:18px;color:var(--blue);font-weight:800;font-size:14px;">Read more ↗</a>
-          </div>
-          <div class="card">
-            <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px;">
-              <span class="tag">메디컬투데이</span>
-              <span class="tag" style="background:#f1f5f9;color:#475569;">2023.07.24</span>
-            </div>
-            <h3>서울대병원, 신장이식 합병증 감소 목표 ‘K-NSQIP’ 추진</h3>
-            <p>Launch of a national surgical quality improvement platform for kidney transplantation.</p>
-            <a href="https://mdtoday.co.kr/news/view/1065596212978285" target="_blank" rel="noreferrer" style="display:inline-flex;margin-top:18px;color:var(--blue);font-weight:800;font-size:14px;">Read more ↗</a>
-          </div>
-        </div>
+      <div class="team-card reveal reveal-delay-3">
+        <h4>Research Assistants</h4>
+        <ul>
+          <li>박민영 <span class="sub">Minyoung Park</span></li>
+          <li>곽민경 <span class="sub">Minkyung Kwak</span></li>
+          <li>최지연 <span class="sub">Jiyeon Choi</span></li>
+          <li>송창엽 <span class="sub">Changyeop Song</span></li>
+        </ul>
       </div>
-    </section>
-
-    <section id="contact">
-      <div class="container">
-        <div class="contact-box">
-          <div class="icon" style="background:#2563eb;color:#fff;">@</div>
-          <h2>Contact</h2>
-          <p>For research collaboration, student opportunities, or academic inquiries, please contact the lab through Seoul National University Hospital.</p>
-          <div class="contact-grid">
-            <div class="contact-item">surgeonmsi@gmail.com</div>
-            <div class="contact-item">Seoul National University Hospital, Seoul, Korea</div>
-          </div>
-        </div>
+      <div class="team-card reveal reveal-delay-4">
+        <h4>Clinical Research Assistants</h4>
+        <ul>
+          <li>홍혜진 <span class="sub">Hyejin Hong</span></li>
+          <li>권소현 <span class="sub">Sohyun Kwon</span></li>
+          <li>반혜빈 <span class="sub">Hyebin Ban</span></li>
+        </ul>
       </div>
-    </section>
-  </main>
+    </div>
+  </div>
+</section>
 
-  <footer>
-    <div class="container">© <span id="year"></span> SNU Transplantation Innovation Lab. All rights reserved.</div>
-  </footer>
+<!-- NEWS -->
+<section id="news" style="background:var(--soft)">
+  <div class="container">
+    <div class="section-head center">
+      <div class="section-label">Media Coverage</div>
+      <h2 class="section-h">In the News</h2>
+      <p class="section-desc">Selected articles and interviews on transplantation research, surgical innovation, and AI-enabled care.</p>
+    </div>
+    <div class="news-grid">
+      <div class="news-card reveal reveal-delay-1"><div class="news-meta"><span class="news-source">메디코파마뉴스</span><span class="news-date">2026.04.20</span></div><h3>[명약 인사이드][프로그랍]② '평생 친구'된 면역억제 치료</h3><p>Interview on transplantation and long-term immunosuppressive therapy.</p><a class="news-link" href="https://www.medicopharma.co.kr/news/articleView.html?idxno=67798" target="_blank" rel="noreferrer">Read more ↗</a></div>
+      <div class="news-card reveal reveal-delay-2"><div class="news-meta"><span class="news-source">헬스경향</span><span class="news-date">2026.03.26</span></div><h3>[장기기증 특집] 삼중장벽 넘어야 생명나눔 꽃핀다</h3><p>Feature article on organ donation, public trust, and system-level barriers.</p><a class="news-link" href="https://www.k-health.com/news/articleView.html?idxno=90972" target="_blank" rel="noreferrer">Read more ↗</a></div>
+      <div class="news-card reveal reveal-delay-3"><div class="news-meta"><span class="news-source">데일리안</span><span class="news-date">2025.12.30</span></div><h3>서울대병원 김효수·민상일 교수, 국가연구개발 우수성과 100선 선정</h3><p>National recognition for clinical validation of robotic kidney transplantation.</p><a class="news-link" href="https://www.dailian.co.kr/news/view/1592222" target="_blank" rel="noreferrer">Read more ↗</a></div>
+      <div class="news-card reveal reveal-delay-1"><div class="news-meta"><span class="news-source">중앙일보</span><span class="news-date">2025.09.03</span></div><h3>서울대병원 민상일 교수를 만나다</h3><p>Interview introducing kidney transplantation, surgical innovation, and clinical research.</p><a class="news-link" href="https://www.joongang.co.kr/article/25382764" target="_blank" rel="noreferrer">Read more ↗</a></div>
+      <div class="news-card reveal reveal-delay-2"><div class="news-meta"><span class="news-source">데일리메디</span><span class="news-date">2025.07.10</span></div><h3>서울대병원 김효수·민상일·이승표 교수 'R&amp;D 우수'</h3><p>Coverage of the 2025 Health and Medical R&amp;D Excellent Achievements.</p><a class="news-link" href="https://www.dailymedi.com/news/news_view.php?wr_id=926789" target="_blank" rel="noreferrer">Read more ↗</a></div>
+      <div class="news-card reveal reveal-delay-3"><div class="news-meta"><span class="news-source">중앙일보</span><span class="news-date">2025</span></div><h3>서울대병원 "단일공 로봇 신장이식, 아시아 최초 성공"</h3><p>Media coverage of single-port robotic kidney transplantation — Asia first.</p><a class="news-link" href="https://www.joongang.co.kr/article/25314951" target="_blank" rel="noreferrer">Read more ↗</a></div>
+      <div class="news-card reveal reveal-delay-1"><div class="news-meta"><span class="news-source">청년의사</span><span class="news-date">2024.11.09</span></div><h3>조은아 교수, 대한외과학회 '최우수 연구자상' 수상</h3><p>AI-assisted kidney volume research developed with the SNUH transplant team.</p><a class="news-link" href="https://www.docdocdoc.co.kr/news/articleView.html?idxno=3022818" target="_blank" rel="noreferrer">Read more ↗</a></div>
+      <div class="news-card reveal reveal-delay-2"><div class="news-meta"><span class="news-source">헬스조선</span><span class="news-date">2024.08.27</span></div><h3>AI로 '고령 신장 기증자' 위험 예측해 이식 결정한다</h3><p>AI kidney cortex volumetry for safer decision-making in older living kidney donors.</p><a class="news-link" href="https://health.chosun.com/site/data/html_dir/2024/08/27/2024082701506.html" target="_blank" rel="noreferrer">Read more ↗</a></div>
+      <div class="news-card reveal reveal-delay-3"><div class="news-meta"><span class="news-source">데일리메디</span><span class="news-date">2024.08.07</span></div><h3>뇌사자 공여 신장이식 성공률 높아진다</h3><p>Research on cysteine-based detection of ischemic kidney injury in deceased donor kidneys.</p><a class="news-link" href="https://www.dailymedi.com/news/news_view.php?wr_id=915021" target="_blank" rel="noreferrer">Read more ↗</a></div>
+      <div class="news-card reveal reveal-delay-1"><div class="news-meta"><span class="news-source">헬스경향</span><span class="news-date">2024.06.24</span></div><h3>타크로리무스 최적 농도 확인…면역억제제 얼마나 써야 할까</h3><p>Multicenter real-world study on tacrolimus trough levels and long-term transplant outcomes.</p><a class="news-link" href="https://www.k-health.com/news/articleView.html?idxno=72886" target="_blank" rel="noreferrer">Read more ↗</a></div>
+      <div class="news-card reveal reveal-delay-2"><div class="news-meta"><span class="news-source">한국일보</span><span class="news-date">2024.06.24</span></div><h3>콩팥이식 후 장기 생존하려면 '면역 억제제' 농도 유지가 관건</h3><p>Public-facing article on tacrolimus exposure and kidney transplant survival.</p><a class="news-link" href="https://www.hankookilbo.com/news/article/A2024062409470001947" target="_blank" rel="noreferrer">Read more ↗</a></div>
+      <div class="news-card reveal reveal-delay-3"><div class="news-meta"><span class="news-source">메디칼업저버</span><span class="news-date">2023.11.20</span></div><h3>돼지에서 사람에게…이종장기이식 임상시험 5년 이내 가능성</h3><p>Interview on the clinical translation of xenotransplantation.</p><a class="news-link" href="https://www.monews.co.kr/news/articleView.html?idxno=327988" target="_blank" rel="noreferrer">Read more ↗</a></div>
+    </div>
+  </div>
+</section>
 
-  <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <div class="contact-wrap reveal">
+      <div class="section-label" style="color:#93c5fd">Contact</div>
+      <h2>Get in Touch</h2>
+      <p>For research collaboration, fellowship opportunities, or academic inquiries, please reach out through the lab.</p>
+      <div class="contact-grid">
+        <div class="contact-item"><strong>Email</strong>surgeonmsi@gmail.com</div>
+        <div class="contact-item"><strong>Location</strong>Seoul National University Hospital, Seoul, Korea</div>
+        <div class="contact-item"><strong>Department</strong>Division of Transplantation &amp; Vascular Surgery</div>
+        <div class="contact-item"><strong>Institution</strong>SNU College of Medicine · SNUH</div>
+      </div>
+    </div>
+  </div>
+</section>
 
-    const search = document.getElementById("publicationSearch");
-    const publications = Array.from(document.querySelectorAll(".publication"));
-    search.addEventListener("input", function () {
-      const q = search.value.toLowerCase().trim();
-      publications.forEach(function (pub) {
-        pub.style.display = pub.textContent.toLowerCase().includes(q) ? "" : "none";
-      });
+<footer>
+  <div class="container">© <span id="yr"></span> SNU Transplantation Innovation Lab · Seoul National University Hospital</div>
+</footer>
+
+<script>
+/* ─── Year ─── */
+document.getElementById('yr').textContent = new Date().getFullYear();
+
+/* ════════════════════════════════════════
+   1. SCROLL REVEAL (Intersection Observer)
+════════════════════════════════════════ */
+const revealEls = document.querySelectorAll('.reveal');
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      revealObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+
+revealEls.forEach(el => revealObserver.observe(el));
+
+/* Stat counter removed */
+
+/* ════════════════════════════════════════
+   3. PUBLICATIONS — animated filter + search
+════════════════════════════════════════ */
+const pubItems = Array.from(document.querySelectorAll('.pub-item'));
+const yearDividers = Array.from(document.querySelectorAll('.pub-year-divider'));
+const searchEl = document.getElementById('pubSearch');
+const filterBtns = document.querySelectorAll('.filter-btn');
+const emptyEl = document.getElementById('pubEmpty');
+let currentFilter = 'all';
+
+/* Build category counts */
+const counts = { all: pubItems.length, Clinical: 0, AI: 0, Translational: 0 };
+pubItems.forEach(p => {
+  const c = p.dataset.cat;
+  if (counts[c] !== undefined) counts[c]++;
+});
+['Clinical','AI','Translational'].forEach(k => {
+  const el = document.getElementById('cnt-' + k);
+  if (el) el.textContent = counts[k];
+});
+
+let filterTimeout = null;
+
+function applyFilters() {
+  const q = searchEl.value.toLowerCase().trim();
+  const visibleYears = new Set();
+  let visibleCount = 0;
+
+  /* Phase 1: hide non-matching with fade */
+  pubItems.forEach(item => {
+    const catMatch = currentFilter === 'all' || item.dataset.cat === currentFilter;
+    const textMatch = !q || item.textContent.toLowerCase().includes(q);
+    const show = catMatch && textMatch;
+
+    if (!show) {
+      item.classList.add('hiding');
+      item.classList.remove('showing');
+    } else {
+      visibleCount++;
+      visibleYears.add(item.dataset.year);
+    }
+  });
+
+  yearDividers.forEach(d => {
+    if (!visibleYears.has(d.dataset.year)) d.classList.add('hiding');
+  });
+
+  /* Phase 2: after fade-out, flip display and show */
+  clearTimeout(filterTimeout);
+  filterTimeout = setTimeout(() => {
+    pubItems.forEach(item => {
+      const catMatch = currentFilter === 'all' || item.dataset.cat === currentFilter;
+      const textMatch = !q || item.textContent.toLowerCase().includes(q);
+      const show = catMatch && textMatch;
+      item.classList.remove('hiding');
+      if (show) {
+        item.style.display = '';
+        requestAnimationFrame(() => item.classList.add('showing'));
+        setTimeout(() => item.classList.remove('showing'), 400);
+      } else {
+        item.style.display = 'none';
+      }
     });
-  </script>
+    yearDividers.forEach(d => {
+      d.classList.remove('hiding');
+      d.style.display = visibleYears.has(d.dataset.year) ? '' : 'none';
+    });
+    emptyEl.style.display = visibleCount === 0 ? '' : 'none';
+  }, 220);
+}
+
+searchEl.addEventListener('input', applyFilters);
+
+filterBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    filterBtns.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    currentFilter = btn.dataset.filter;
+    applyFilters();
+  });
+});
+
+/* ════════════════════════════════════════
+   4. MICRO: rcard icon color reset on mouse-leave
+════════════════════════════════════════ */
+document.querySelectorAll('.rcard').forEach(card => {
+  const icon = card.querySelector('.rcard-icon');
+  if (!icon) return;
+  card.addEventListener('mouseleave', () => {
+    icon.style.transition = 'background .35s, color .35s, box-shadow .35s';
+    icon.style.background = '';
+    icon.style.color = '';
+    icon.style.boxShadow = '';
+  });
+});
+
+/* ════════════════════════════════════════
+   5. SMOOTH NAV highlight on scroll
+════════════════════════════════════════ */
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('.nav-links a');
+
+const navObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      navLinks.forEach(a => a.style.color = '');
+      const active = document.querySelector(`.nav-links a[href="#${entry.target.id}"]`);
+      if (active) active.style.color = 'var(--blue)';
+    }
+  });
+}, { rootMargin: '-40% 0px -55% 0px' });
+
+sections.forEach(s => navObserver.observe(s));
+</script>
 </body>
 </html>
