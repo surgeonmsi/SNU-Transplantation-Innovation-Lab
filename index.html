@@ -649,6 +649,14 @@
                 0%,100% { transform: translateY(-28px); opacity:.6; }
                 50%      { transform: translateY(28px); opacity:.9; }
               }
+              .orbit-dot-2 { animation: orbitAnim 9s linear 2s infinite; transform-origin: 240px 210px; }
+              .orbit-dot-3 { animation: orbitAnim 12s linear 1s infinite reverse; transform-origin: 240px 210px; }
+              .n1 { animation: neuronBlink 2.1s ease-in-out infinite; }
+              .n2 { animation: neuronBlink 2.1s ease-in-out .42s infinite; }
+              .n3 { animation: neuronBlink 2.1s ease-in-out .84s infinite; }
+              .n4 { animation: neuronBlink 2.1s ease-in-out 1.26s infinite; }
+              .n5 { animation: neuronBlink 2.1s ease-in-out 1.68s infinite; }
+              @keyframes neuronBlink { 0%,100%{opacity:.2} 50%{opacity:1} }
             </style>
           </defs>
 
@@ -659,76 +667,95 @@
           <circle cx="240" cy="210" r="168" fill="none" stroke="#dbeafe" stroke-width="1.5" stroke-dasharray="4 6" opacity=".7"/>
           <circle cx="240" cy="210" r="138" fill="none" stroke="#e0e7ff" stroke-width="1" stroke-dasharray="3 8" opacity=".5"/>
 
-          <!-- Central kidney platform -->
-          <ellipse cx="240" cy="218" rx="98" ry="12" fill="#1252c8" opacity=".1"/>
-
-          <!-- LEFT KIDNEY -->
-          <g class="float-k" filter="url(#softShadow)">
-            <!-- body -->
-            <path d="M158,170 C138,165 120,178 118,200 C116,225 130,248 152,258 C166,264 178,260 185,248 C192,237 192,218 188,200 C184,182 170,173 158,170 Z"
-                  fill="url(#kidneyGrad1)" opacity=".95"/>
-            <!-- inner pelvis -->
-            <path d="M160,185 C150,183 143,191 144,202 C145,215 155,225 165,227 C172,228 178,222 177,213 C176,200 168,186 160,185 Z"
-                  fill="#fee2e2" opacity=".55"/>
-            <!-- cortex highlight -->
-            <path d="M148,175 C138,178 128,188 127,200" stroke="rgba(255,255,255,.5)" stroke-width="2.5" fill="none" stroke-linecap="round"/>
-            <!-- top artery stub -->
-            <rect x="154" y="155" width="8" height="18" rx="4" fill="#ef4444"/>
-            <rect x="166" y="158" width="6" height="14" rx="3" fill="#f87171"/>
+          <!-- LEFT KIDNEY (PNG, mirrored) -->
+          <g class="float-k">
+            <image href="images/kidney.png" x="-220" y="110" width="165" height="165"
+                   transform="scale(-1,1)"/>
           </g>
 
-          <!-- RIGHT KIDNEY -->
-          <g class="float-k2" filter="url(#softShadow)">
-            <path d="M322,170 C342,165 360,178 362,200 C364,225 350,248 328,258 C314,264 302,260 295,248 C288,237 288,218 292,200 C296,182 310,173 322,170 Z"
-                  fill="url(#kidneyGrad2)" opacity=".95"/>
-            <path d="M320,185 C330,183 337,191 336,202 C335,215 325,225 315,227 C308,228 302,222 303,213 C304,200 312,186 320,185 Z"
-                  fill="#ffedd5" opacity=".55"/>
-            <path d="M332,175 C342,178 352,188 353,200" stroke="rgba(255,255,255,.5)" stroke-width="2.5" fill="none" stroke-linecap="round"/>
-            <rect x="318" y="155" width="8" height="18" rx="4" fill="#f97316"/>
-            <rect x="308" y="158" width="6" height="14" rx="3" fill="#fb923c"/>
+          <!-- RIGHT KIDNEY (PNG, normal) -->
+          <g class="float-k2">
+            <image href="images/kidney.png" x="258" y="110" width="165" height="165"/>
           </g>
 
-          <!-- Central AI / DNA orb -->
+          <!-- Central AI / Neural Net orb -->
           <g>
-            <!-- pulse rings -->
-            <circle class="pulse-ring"  cx="240" cy="205" r="36" fill="none" stroke="#2563eb" stroke-width="2"/>
-            <circle class="pulse-ring-2" cx="240" cy="205" r="36" fill="none" stroke="#7c3aed" stroke-width="1.5"/>
-            <circle class="pulse-ring-3" cx="240" cy="205" r="36" fill="none" stroke="#2563eb" stroke-width="1"/>
+            <!-- pulse rings x3 -->
+            <circle class="pulse-ring"   cx="240" cy="205" r="36" fill="none" stroke="#6366f1" stroke-width="2"/>
+            <circle class="pulse-ring-2" cx="240" cy="205" r="36" fill="none" stroke="#8b5cf6" stroke-width="1.5"/>
+            <circle class="pulse-ring-3" cx="240" cy="205" r="36" fill="none" stroke="#06b6d4" stroke-width="1"/>
             <!-- orb bg -->
-            <circle cx="240" cy="205" r="34" fill="url(#glowBlue)" filter="url(#glowFilter)"/>
-            <circle cx="240" cy="205" r="34" fill="white" opacity=".08"/>
-            <!-- DNA helix inside orb -->
-            <!-- left strand -->
-            <path d="M228,190 C232,196 232,205 228,211 C232,217 232,226 228,232" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" opacity=".9"/>
-            <!-- right strand -->
-            <path d="M252,190 C248,196 248,205 252,211 C248,217 248,226 252,232" fill="none" stroke="#bfdbfe" stroke-width="2" stroke-linecap="round" opacity=".9"/>
-            <!-- rungs -->
-            <line x1="230" y1="196" x2="250" y2="196" stroke="rgba(255,255,255,.7)" stroke-width="1.5" stroke-linecap="round"/>
-            <line x1="228" y1="205" x2="252" y2="205" stroke="rgba(255,255,255,.85)" stroke-width="1.5" stroke-linecap="round"/>
-            <line x1="230" y1="214" x2="250" y2="214" stroke="rgba(255,255,255,.7)" stroke-width="1.5" stroke-linecap="round"/>
-            <line x1="228" y1="223" x2="252" y2="223" stroke="rgba(255,255,255,.55)" stroke-width="1.4" stroke-linecap="round"/>
-            <!-- scan line across orb -->
-            <g style="clip-path:circle(34px at 240px 205px)">
-              <rect class="scan-line" x="207" y="196" width="66" height="2.5" rx="1.5" fill="rgba(147,197,253,.65)"/>
+            <circle cx="240" cy="205" r="34" fill="#1e1b4b"/>
+            <circle cx="240" cy="205" r="34" fill="url(#glowBlue)" opacity=".4"/>
+            <!-- grid lines -->
+            <clipPath id="orbClip"><circle cx="240" cy="205" r="34"/></clipPath>
+            <g clip-path="url(#orbClip)" opacity=".18">
+              <line x1="210" y1="192" x2="270" y2="192" stroke="#818cf8" stroke-width=".7"/>
+              <line x1="210" y1="205" x2="270" y2="205" stroke="#818cf8" stroke-width=".7"/>
+              <line x1="210" y1="218" x2="270" y2="218" stroke="#818cf8" stroke-width=".7"/>
+              <line x1="228" y1="172" x2="228" y2="238" stroke="#818cf8" stroke-width=".7"/>
+              <line x1="240" y1="172" x2="240" y2="238" stroke="#818cf8" stroke-width=".7"/>
+              <line x1="252" y1="172" x2="252" y2="238" stroke="#818cf8" stroke-width=".7"/>
             </g>
+            <!-- neural connections -->
+            <g clip-path="url(#orbClip)" fill="none" stroke-width=".9">
+              <line class="n1" x1="218" y1="196" x2="232" y2="200" stroke="#818cf8"/>
+              <line class="n2" x1="218" y1="196" x2="232" y2="210" stroke="#818cf8"/>
+              <line class="n2" x1="218" y1="205" x2="232" y2="200" stroke="#818cf8"/>
+              <line class="n3" x1="218" y1="205" x2="232" y2="210" stroke="#818cf8"/>
+              <line class="n3" x1="218" y1="205" x2="232" y2="218" stroke="#818cf8"/>
+              <line class="n4" x1="218" y1="214" x2="232" y2="210" stroke="#818cf8"/>
+              <line class="n4" x1="218" y1="214" x2="232" y2="218" stroke="#818cf8"/>
+              <line class="n2" x1="234" y1="200" x2="246" y2="198" stroke="#a78bfa"/>
+              <line class="n3" x1="234" y1="200" x2="246" y2="210" stroke="#a78bfa"/>
+              <line class="n3" x1="234" y1="210" x2="246" y2="198" stroke="#a78bfa"/>
+              <line class="n4" x1="234" y1="210" x2="246" y2="210" stroke="#a78bfa"/>
+              <line class="n4" x1="234" y1="210" x2="246" y2="220" stroke="#a78bfa"/>
+              <line class="n5" x1="234" y1="218" x2="246" y2="210" stroke="#a78bfa"/>
+              <line class="n5" x1="234" y1="218" x2="246" y2="220" stroke="#a78bfa"/>
+              <line class="n3" x1="248" y1="198" x2="258" y2="203" stroke="#c4b5fd"/>
+              <line class="n4" x1="248" y1="210" x2="258" y2="203" stroke="#c4b5fd"/>
+              <line class="n4" x1="248" y1="210" x2="258" y2="213" stroke="#c4b5fd"/>
+              <line class="n5" x1="248" y1="220" x2="258" y2="213" stroke="#c4b5fd"/>
+            </g>
+            <!-- neural nodes -->
+            <circle class="n1" cx="218" cy="196" r="3.5" fill="#818cf8"/>
+            <circle class="n2" cx="218" cy="205" r="3.5" fill="#818cf8"/>
+            <circle class="n3" cx="218" cy="214" r="3.5" fill="#818cf8"/>
+            <circle class="n2" cx="234" cy="200" r="3.5" fill="#a78bfa"/>
+            <circle class="n3" cx="234" cy="210" r="3.5" fill="#a78bfa"/>
+            <circle class="n4" cx="234" cy="218" r="3.5" fill="#a78bfa"/>
+            <circle class="n3" cx="248" cy="198" r="3.5" fill="#c4b5fd"/>
+            <circle class="n4" cx="248" cy="210" r="3.5" fill="#c4b5fd"/>
+            <circle class="n5" cx="248" cy="220" r="3.5" fill="#c4b5fd"/>
+            <circle class="n5" cx="258" cy="203" r="4"   fill="#67e8f9"/>
+            <circle class="n2" cx="258" cy="213" r="4"   fill="#67e8f9"/>
+            <!-- scan line -->
+            <g clip-path="url(#orbClip)">
+              <rect class="scan-line" x="207" y="197" width="66" height="2.5" rx="1.2" fill="rgba(147,210,253,.6)"/>
+            </g>
+            <!-- rim specular -->
+            <path d="M220,186 C230,180 250,179 260,184" stroke="rgba(255,255,255,.12)" stroke-width="2.5" fill="none" stroke-linecap="round"/>
           </g>
 
           <!-- Data flow lines — kidney to center -->
-          <!-- left kidney → center -->
-          <path d="M188,210 Q210,210 206,205" fill="none" stroke="url(#circuitGrad)" stroke-width="2" opacity=".5"/>
-          <path class="flow-line" d="M188,210 Q210,210 206,205" fill="none" stroke="#60a5fa" stroke-width="1.8" opacity=".85"/>
-          <!-- right kidney → center -->
-          <path d="M292,210 Q270,210 274,205" fill="none" stroke="url(#circuitGrad)" stroke-width="2" opacity=".5"/>
-          <path class="flow-line" d="M292,210 Q270,210 274,205" fill="none" stroke="#a78bfa" stroke-width="1.8" opacity=".85"/>
+          <path d="M220,200 Q232,202 206,205" fill="none" stroke="url(#circuitGrad)" stroke-width="2" opacity=".5"/>
+          <path class="flow-line" d="M220,200 Q232,202 206,205" fill="none" stroke="#60a5fa" stroke-width="1.8" opacity=".85"/>
+          <path d="M260,200 Q248,202 274,205" fill="none" stroke="url(#circuitGrad)" stroke-width="2" opacity=".5"/>
+          <path class="flow-line" d="M260,200 Q248,202 274,205" fill="none" stroke="#a78bfa" stroke-width="1.8" opacity=".85"/>
 
-          <!-- Orbiting data dots -->
+          <!-- Orbiting data dots x3 -->
           <g class="orbit-dot">
             <circle cx="408" cy="210" r="6" fill="#2563eb" opacity=".9"/>
             <circle cx="408" cy="210" r="10" fill="#2563eb" opacity=".2"/>
           </g>
-          <g style="animation:orbitAnim 8s linear 3s infinite;transform-origin:240px 210px">
+          <g class="orbit-dot-2">
             <circle cx="72" cy="210" r="5" fill="#7c3aed" opacity=".85"/>
             <circle cx="72" cy="210" r="9" fill="#7c3aed" opacity=".2"/>
+          </g>
+          <g class="orbit-dot-3">
+            <circle cx="240" cy="42" r="4.5" fill="#06b6d4" opacity=".8"/>
+            <circle cx="240" cy="42" r="8" fill="#06b6d4" opacity=".18"/>
           </g>
 
           <!-- Floating label chips — 6개, 시계방향 배치 -->
