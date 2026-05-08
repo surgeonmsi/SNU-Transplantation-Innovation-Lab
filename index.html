@@ -274,9 +274,10 @@
     }
     .team-card h4{font-family:'DM Sans',sans-serif;font-size:14px;font-weight:700;color:var(--blue);text-transform:uppercase;letter-spacing:.1em;margin-bottom:14px}
     .team-card ul{list-style:none}
-    .team-card li{font-size:15px;font-weight:600;color:var(--slate);padding:5px 0;border-bottom:1px solid var(--soft)}
+    .team-card li{font-size:15px;font-weight:600;color:var(--slate);padding:5px 0;border-bottom:1px solid var(--soft);display:flex;flex-direction:column;align-items:flex-start}
     .team-card li:last-child{border:none}
     .team-card .sub{font-size:13px;font-weight:400;color:var(--muted)}
+    .member-photo{width:56px;height:56px;border-radius:50%;object-fit:cover;object-position:top center;margin-bottom:12px;border:2px solid var(--line)}
 
     /* ── NEWS ── */
     .news-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
@@ -1367,12 +1368,16 @@
     <div class="team-grid">
       <div class="team-card reveal reveal-delay-1">
         <h4>Research Faculty</h4>
-        <ul><li>Sang Wan Kim <span class="sub">PhD</span></li></ul>
+        <ul><li>
+          <img src="images/sangwan_kim.jpg" class="member-photo" alt="Sang Wan Kim"/>
+          Sang Wan Kim <span class="sub">PhD</span></li></ul>
       </div>
       <div class="team-card reveal reveal-delay-2">
         <h4>Graduate Researcher</h4>
         <ul>
-          <li>Dong Hoon Jung <span class="sub">PhD Candidate</span></li>
+          <li>
+            <img src="images/donghoon_jeong.jpg" class="member-photo" alt="Dong Hoon Jung"/>
+            Dong Hoon Jeong <span class="sub">PhD Candidate</span></li>
         </ul>
       </div>
       <div class="team-card reveal reveal-delay-3">
